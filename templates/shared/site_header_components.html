@@ -1,0 +1,73 @@
+<header>
+    <div class="containeres top-nav">
+        <a href="index.html" class="logo"><img src="/static/img/logo-black.png" alt=""></a>
+        <form action="" class="search">
+            <input type="search" placeholder="Search for products...">
+            <button type="submit">Search</button>
+        </form>
+
+        <div class="cart_header">
+            <div onclick="open_cart()" class="icon_cart">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span class="count_item">0</span>
+            </div>
+            <div class="tottal_price">
+                <p>My Cart:</p>
+                <p class="price_cart_Head">$0</p>
+            </div>
+        </div>
+    </div>
+
+    <nav>
+        <div class="links containeres">
+            <i onclick="open_menu()" class="fa-solid fa-bars btn_open_menu"></i>
+            <ul id="menu">
+                <span onclick="close_menu()" class="bg-overlay"></span>
+                <i onclick="close_menu()" class="fa-regular fa-circle-xmark btn_close_menu"></i>
+                <img class="logo_menu" src="img/logo-black.png" alt="">
+
+                <li class="active"><a href="{% url 'home_page' %}" style="text-decoration: none">home</a></li>
+                <li><a href="{% url 'product_list' %}" style="text-decoration: none">all products</a></li>
+                <li><a href="" style="text-decoration: none">about us</a></li>
+                <li><a href="{% url 'contact_us_page' %}" style="text-decoration: none">contact</a></li>
+            </ul>
+
+            <div class="loging_signup">
+                <a href="login.html">login <i class="fa-solid fa-right-to-bracket"></i></a>
+                <a href="signup_page.html" style="text-decoration: none">sign up <i
+                        class="fa-solid fa-user-plus"></i></a>
+            </div>
+        </div>
+    </nav>
+</header>
+<!-- add to cart -->
+<div class="cart ">
+    <div class="top_cart">
+        <h3>My cart <span class="count_item_cart">(0Item in Cart)</span></h3>
+        <span onclick="close_cart()" class="close_cart"><i class="fa-regular fa-circle-xmark"></i></span>
+    </div>
+
+    <div class="items_in_cart">
+        <div class="item_cart">
+            <img src="/static/img/product/product1.jpg" alt="">
+            <div class="content">
+                <h4>products</h4>
+                <p class="price_cart">price</p>
+            </div>
+            <button onClick="remove_from_cart(1)" class="delete_item"><i class="fa-solid fa-trash-can"></i></button>
+        </div>
+        <!-- cart.html -->
+    </div>
+
+    <div class="bottom_Cart">
+        <div class="total">
+            <p>Cart subtotal</p>
+            <p class="price_cart_total">$0</p>
+        </div>
+
+        <div class="button_Cart">
+            <a href="checkout.html" class="btn_cart">Proceed to checkout</a>
+            <button onclick="close_cart()" class="btn_cart trans_bg">Shop more</button>
+        </div>
+    </div>
+</div>

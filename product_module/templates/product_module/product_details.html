@@ -1,0 +1,85 @@
+{% extends 'shared/layout.html' %}
+
+
+{% block title %}
+    {{ products.title }}
+{% endblock %}
+
+{% block content %}
+    <div class="item_detail">
+        <div class="containeres">
+
+
+            <div class="img_item">
+                <div class="big_img">
+                    <img id="bigImg" src="/static/img/product/product-1.jpg" alt="">
+                </div>
+
+                <div class="sm_imgs">
+                    <img onclick="ChangeItemImage(this.src)" src="/static/img/product/product-1.jpg" alt="">
+                    <img onclick="ChangeItemImage(this.src)" src="/static/img/product/product1.jpg" alt="">
+                    <img onclick="ChangeItemImage(this.src)" src="/static/img/product/product-2.jpg" alt="">
+                    <img onclick="ChangeItemImage(this.src)" src="/static/img/product/product2.jpg" alt="">
+                </div>
+            </div>
+
+            <div class="details_item">
+                <h1 class="name">{{ products.title|upper }}</h1>
+
+
+                <div class="price">
+                    <p><span>${{ products.price }}</span></p>
+                    <p class="old_price">${{ products.old_price }}</p>
+                </div>
+
+                <h5>Avaailability: <span>In Stock</span></h5>
+                <h5>Brand: <span>{{ products.brand.title |upper }}</span></h5>
+
+                <p class="text_p">{{ products.description }}</p>
+                <h4>Hurry Up! Only {{ products.quantity }} products left in stock.</h4>
+
+                <button>add to cart <i class="fa-solid fa-cart-arrow-down"></i></button>
+
+                <div class="icons">
+                    <span><i class="fa-regular fa-heart"></i></span>
+                    <span><i class="fa-solid fa-sliders"></i></span>
+                    <span><i class="fa-solid fa-print"></i></span>
+                    <span><i class="fa-solid fa-share-nodes"></i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="slide slide_sale">
+        <div class="containeres">
+
+            <div class="sale_sec mySwiper">
+
+                <div class="top_slide">
+                    <h2>on sale <span>product</span></h2>
+                </div>
+
+                <div id="swiper_items_sale" class="products swiper-wrapper">
+
+
+                </div>
+
+                <div class="swiper-button-next btn_Swip">
+                </div>
+                <div class="swiper-button-prev btn_Swip"></div>
+
+
+            </div>
+        </div>
+    </section>
+
+
+    <div class="back_to_top">
+        <p>back to top</p>
+    </div>
+
+{% endblock %}
+
+
+
+

@@ -1,0 +1,129 @@
+{% extends 'shared/layout.html' %}
+
+{% block title %}product list{% endblock %}
+
+
+{% block content %}
+
+    <div class="top_page">
+        <div class="containeres">
+            <h1>Experience the Future of Technology with Our Topico.</h1>
+            <p>Find everything you need to transform your home into a smart, connected space. Our Topico store offers a
+                wide range of devices to fit your needs</p>
+        </div>
+    </div>
+
+    <section class="all_products">
+        <div class="containeres">
+
+            <span class="btn_filter" onclick="open_close_filter()">
+                filter <i class="fa-solid fa-filter"></i>
+            </span>
+
+            <div class="filter">
+                <h2>filter</h2>
+
+                <div class="filter_item">
+                    <h4>categorie</h4>
+                    <div class="content">
+
+                        <div class="item">
+                            <span>Phones</span>
+                            <input type="checkbox">
+                        </div>
+
+                        <div class="item">
+                            <span>Tablets</span>
+                            <input type="checkbox">
+                        </div>
+
+
+                        <div class="item">
+                            <span>Electronics</span>
+                            <input type="checkbox">
+                        </div>
+
+
+                        <div class="item">
+                            <span>TV</span>
+                            <input type="checkbox">
+                        </div>
+
+                        <div class="item">
+                            <span>Fashion</span>
+                            <input type="checkbox">
+                        </div>
+
+                        <div class="item">
+                            <span>Watches</span>
+                            <input type="checkbox">
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="filter_item">
+                    <h4>Brand</h4>
+                    <div class="content">
+
+                        <div class="item">
+                            <span>Apple</span>
+                            <input type="checkbox">
+                        </div>
+
+                        <div class="item">
+                            <span>samsung</span>
+                            <input type="checkbox">
+                        </div>
+
+
+                        <div class="item">
+                            <span>intel</span>
+                            <input type="checkbox">
+                        </div>
+
+
+                        <div class="item">
+                            <span>oppo</span>
+                            <input type="checkbox">
+                        </div>
+
+                        <div class="item">
+                            <span>xiaomi</span>
+                            <input type="checkbox">
+                        </div>
+
+                        <div class="item">
+                            <span>huawei</span>
+                            <input type="checkbox">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="products_dev" class="products_dev">
+
+                {% for product in products %}
+                    {% include 'includes/products_items_partial.html' with product=product %}
+                {% endfor %}
+
+
+            </div>
+            <div class="pagination">
+                <span class="btn_page prev"><i class="fa-solid fa-backward-step"></i></span>
+                <a href="#"> <span class="num_page active">1</span></a>
+                <a href="#"> <span class="num_page">2</span></a>
+                <a href="#"> <span class="num_page">3</span></a>
+                <span class="btn_page next"><i class="fa-solid fa-forward-step"></i></span>
+            </div>
+        </div>
+    </section>
+
+    <div class="back_to_top">
+        <p>back to top</p>
+    </div>
+
+
+{% endblock %}
