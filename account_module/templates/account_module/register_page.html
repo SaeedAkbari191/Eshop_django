@@ -12,7 +12,10 @@
             <form method="post" action="{% url 'register' %}" class="form">
                 {% csrf_token %}
                 {% comment %} {{ register_form }}{% endcomment %}
-
+                <div>
+                    {{ register_form.username }}
+                    {{ register_form.username.errors }}
+                </div>
 
                 <div>
                     {{ register_form.email }}
@@ -44,17 +47,16 @@
 
 
             <div class="buttons-container">
-                {% comment %}
-                <div class="apple-login-buuton">
-                    <i class="fa-brands fa-apple"></i>
-                    <span>Sign UP with Apple</span>
-                </div>
-                {% endcomment %}
-
                 <div class="google-login-button">
                     <i class="fa-brands fa-google"></i>
                     <span>Sign UP with Google</span>
                 </div>
+
+
+                {% comment %}  <div class="apple-login-buuton">
+                    <i class="fa-brands fa-apple"></i>
+                    <span>Sign UP with Apple</span>
+                </div>{% endcomment %}
             </div>
         </div>
     </section>

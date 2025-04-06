@@ -129,13 +129,13 @@
     gap: 10px;
 }
 
-.apple-login-buuton {
+.google-login-button {
     background: #000;
     border: 2px solid #000;
     color: #fff;
 }
 
-.google-login-button {
+.apple-login-buuton {
     border: 2px solid #c5c5c5;
     color: var(--dark-color);
 }
