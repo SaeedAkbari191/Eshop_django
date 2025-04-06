@@ -1,0 +1,62 @@
+{% extends 'shared/layout.html' %}
+
+{% block title %}
+    Register
+{% endblock %}
+{% block content %}
+
+    <section class="signin sec_form">
+        <div class="form_container">
+            <p class="title">Welcome back</p>
+
+            <form method="post" action="{% url 'register' %}" class="form">
+                {% csrf_token %}
+                {% comment %} {{ register_form }}{% endcomment %}
+
+
+                <div>
+                    {{ register_form.email }}
+                    {{ register_form.email.errors }}
+                </div>
+
+                <div>
+                    {{ register_form.password }}
+                    {{ register_form.password.errors }}
+                </div>
+                <div>
+                    {{ register_form.confirm_password }}
+                    {{ register_form.confirm_password.errors }}
+                </div>
+
+
+                {% comment %}<input type="text" class="input" placeholder="Name">
+                <input type="email" class="input" placeholder="Email">
+                <input type="password" class="input" placeholder="password">
+                <input type="password" class="input" placeholder="password">{% endcomment %}
+
+                <button class="form-btn">sign up</button>
+
+            </form>
+
+            <p class="sign-up-label">
+                have an account? <a href="#" class="sign-up-link">Login</a>
+            </p>
+
+
+            <div class="buttons-container">
+                {% comment %}
+                <div class="apple-login-buuton">
+                    <i class="fa-brands fa-apple"></i>
+                    <span>Sign UP with Apple</span>
+                </div>
+                {% endcomment %}
+
+                <div class="google-login-button">
+                    <i class="fa-brands fa-google"></i>
+                    <span>Sign UP with Google</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

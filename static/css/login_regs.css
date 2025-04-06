@@ -1,4 +1,4 @@
-:root{
+:root {
     --main-color: #fcb700;
     --dark-color: #222222;
     --parg-color: #666666;
@@ -7,7 +7,7 @@
     --name-item: #0066c0;
 }
 
-.sec_form{
+.sec_form {
     margin: 240px 0 100px;
     display: flex;
     justify-content: center;
@@ -15,7 +15,7 @@
     width: 100%;
 }
 
-.form_container{
+.form_container {
     width: 350px;
     background: #fff;
     box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
@@ -24,7 +24,7 @@
     padding: 20px 30px;
 }
 
-.title{
+.title {
     color: var(--dark-color);
     text-align: center;
     margin: 10px 0 30px;
@@ -32,38 +32,50 @@
     font-weight: 800;
 }
 
-.form{
+.form {
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 18px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
-.form input{
-    border-radius: 5px;
+
+.errorlist {
+    margin-top: 0px;
+    padding: 0px 10px;
+    color: #f30404;
+    font-size: 15px;
+
+}
+
+.form .input {
+    border-radius: 50px;
     border: 1px solid #c0c0c0;
     outline: 0;
     padding: 12px 15px;
 }
 
-.form input:focus{
+.form .input:focus {
     border-color: var(--main-color);
 }
-.page-link{
+
+.page-link {
     margin: 0;
     text-align: end;
 }
-.page-link .page-link-label{
+
+.page-link .page-link-label {
     color: var(--parg-color);
     font-size: 12px;
     transition: 0.3s;
 }
-.page-link .page-link-label:hover{
+
+.page-link .page-link-label:hover {
     color: #000;
 }
 
-.form-btn{
+.form-btn {
     padding: 10px 15px;
     border-radius: 5px;
     border: 0;
@@ -76,13 +88,13 @@
     font-weight: bold;
 }
 
-.sign-up-label{
+.sign-up-label {
     margin: 0;
     font-size: 12px;
     color: var(--parg-color);
 }
 
-.sign-up-label .sign-up-link{
+.sign-up-label .sign-up-link {
     color: var(--main-color);
     font-size: 14px;
     margin-left: 2px;
@@ -90,7 +102,7 @@
 }
 
 
-.buttons-container{
+.buttons-container {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -98,12 +110,13 @@
     margin-top: 20px;
     gap: 15px;
 }
-.buttons-container i{
+
+.buttons-container i {
     font-size: 22px;
 }
 
 .apple-login-buuton,
-.google-login-button{
+.google-login-button {
     border-radius: 5px;
     padding: 10px 15px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
@@ -115,21 +128,24 @@
     font-size: 14px;
     gap: 10px;
 }
-.apple-login-buuton{
+
+.apple-login-buuton {
     background: #000;
     border: 2px solid #000;
     color: #fff;
 }
-.google-login-button{
+
+.google-login-button {
     border: 2px solid #c5c5c5;
     color: var(--dark-color);
 }
 
 
-@media (max-width:500px) {
-    .form_container{
+@media (max-width: 500px) {
+    .form_container {
         width: 100%;
         border-radius: 0;
         box-shadow: none;
     }
 }
+
