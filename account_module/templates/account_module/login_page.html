@@ -9,12 +9,15 @@
         <div class="form_container">
             <p class="title">Welcome back</p>
 
-            <form action="" class="form">
+            <form method="post" action="{% url 'login_page' %}" class="form">
+                {% csrf_token %}
                 <div>
                     {{ login_form.email }}
+                    {{ login_form.email.errors }}
                 </div>
                 <div>
                     {{ login_form.password }}
+                    {{ login_form.password.errors }}
                 </div>
 
 
