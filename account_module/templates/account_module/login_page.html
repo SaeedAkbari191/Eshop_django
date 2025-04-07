@@ -1,0 +1,46 @@
+{% extends 'shared/layout.html' %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block content %}
+    <section class="signin sec_form">
+        <div class="form_container">
+            <p class="title">Welcome back</p>
+
+            <form action="" class="form">
+                <div>
+                    {{ login_form.email }}
+                </div>
+                <div>
+                    {{ login_form.password }}
+                </div>
+
+
+                {% comment %} <input type="email" class="input" placeholder="Email">
+                <input type="password" class="input" placeholder="password">{% endcomment %}
+                <p class="page-link">
+                    <a href="#" class="page-link-label">Forgot Password?</a>
+                </p>
+
+                <button type="submit" class="form-btn">Login</button>
+
+            </form>
+
+            <p class="sign-up-label">
+                Don't have an account? <a href="{% url 'register_page' %}" class="sign-up-link">sign up</a>
+            </p>
+
+
+            <div class="buttons-container">
+                <div class="google-login-button">
+                    <i class="fa-brands fa-google"></i>
+                    <span>Login with Google</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %}

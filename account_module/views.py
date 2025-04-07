@@ -1,9 +1,12 @@
+from lib2to3.fixes.fix_input import context
+
+from django.http import Http404
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.utils.crypto import get_random_string
 from django.views.generic import View
 
-from .forms import RegisterForm
+from .forms import RegisterForm, LoginForm
 from .models import User
 
 
@@ -42,9 +45,34 @@ class RegisterView(View):
                 new_user.save()
                 # todo: send email active code
                 # send_email('فعالسازی حساب کاربری', new_user.email, {'user': new_user}, 'emails/activate_account.html')
-                return redirect(reverse('home_page'))
+                return redirect(reverse('login_page'))
 
             context = {
                 'register_form': register_form
             }
             return render(request, 'account_module/register_page.html', context)
+
+
+class LoginView(View):
+    def get(self, request):
+        login_form = LoginForm()
+        context = {
+            'login_form': login_form
+        }
+        return render(request, 'account_module/login_page.html', context)
+
+
+class ActivateAccountView(View):
+    def get(self, request, email_active_code):
+        user: User = User.objects.filter(email_active_code__iexact=email_active_code).first()
+        if user is not None:
+            if not user.is_active:
+                user.is_active = True
+                user.email_active_code = get_random_string(72)
+                user.save()
+                # todo show successful messafe
+                return redirect(reverse('login_page'))
+            else:
+                pass
+                # todo your account was activate
+        raise Http404

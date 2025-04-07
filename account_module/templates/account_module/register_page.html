@@ -9,7 +9,7 @@
         <div class="form_container">
             <p class="title">Welcome back</p>
 
-            <form method="post" action="{% url 'register' %}" class="form">
+            <form method="post" action="{% url 'register_page' %}" class="form">
                 {% csrf_token %}
                 {% comment %} {{ register_form }}{% endcomment %}
                 <div>
@@ -42,7 +42,7 @@
             </form>
 
             <p class="sign-up-label">
-                have an account? <a href="#" class="sign-up-link">Login</a>
+                have an account? <a href="{% url 'login_page' %}" class="sign-up-link">Login</a>
             </p>
 
 
