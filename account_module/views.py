@@ -1,3 +1,5 @@
+from lib2to3.fixes.fix_input import context
+
 from django.http import Http404
 from django.contrib.auth import login
 from django.http import Http404
@@ -6,7 +8,7 @@ from django.urls import reverse
 from django.utils.crypto import get_random_string
 from django.views.generic import View
 
-from .forms import RegisterForm, LoginForm
+from .forms import RegisterForm, LoginForm, ForgetPasswordForm, ResetPasswordForm
 from .models import User
 
 
@@ -102,6 +104,35 @@ class ActivateAccountView(View):
         raise Http404
 
 
+class ForgotPasswordView(View):
+    def get(self, request):
+        forget_password_form = ForgetPasswordForm
+        context = {
+            'forget_password_form': forget_password_form
+        }
+        return render(request, 'account_module/Forgot_password .html', context)
+
+    def post(self, request):
+        forget_password_form = ForgetPasswordForm(request.POST)
+        if forget_password_form.is_valid():
+            user_email = forget_password_form.cleaned_data.get('email')
+            user = User.objects.filter(email__iexact=user_email).first()
+            if user is not None:
+                # send message
+                pass
+        context = {
+            'forget_password_form': forget_password_form
+        }
+        return render(request, 'account_module/Forgot_password .html', context)
 
 
-
+class ResetPasswordView(View):
+    def get(self, request, active_code):
+        user = User.objects.filter(email_active_code__iexact=active_code).first()
+        if user is None:
+            return redirect(reverse('login_page'))
+        reset_password_form = ResetPasswordForm()
+        context = {
+            'reset_password_form': reset_password_form
+        }
+        return render(request, 'account_module/Reset_password.html', context)

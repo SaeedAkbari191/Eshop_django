@@ -83,3 +83,43 @@ class LoginForm(forms.Form):
             validators.MaxLengthValidator(100),
         ]
     )
+
+
+class ForgetPasswordForm(forms.Form):
+    email = forms.EmailField(
+        label='',
+        widget=forms.EmailInput(
+            attrs={
+                'class': 'form input',
+                'placeholder': 'Email',
+            }
+        ),
+        validators=[
+            validators.MaxLengthValidator(100),
+            validators.EmailValidator,
+        ]
+    )
+
+
+class ResetPasswordForm(forms.Form):
+    password = forms.CharField(
+        label='',
+        widget=forms.PasswordInput(
+            attrs={
+                'class': 'form input',
+                'placeholder': 'Password',
+            }
+        ),
+        validators=[
+            validators.MaxLengthValidator(100),
+        ]
+    )
+    confirm_password = forms.CharField(
+        label='',
+        widget=forms.PasswordInput(
+            attrs={
+                'class': 'form input',
+                'placeholder': 'Confirm Password',
+            }
+        )
+    )
