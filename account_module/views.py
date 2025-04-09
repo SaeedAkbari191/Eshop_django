@@ -1,13 +1,13 @@
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.http import Http404
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.utils.crypto import get_random_string
 from django.views.generic import View
 
+from utils.email_service import send_email
 from .forms import RegisterForm, LoginForm, ForgetPasswordForm, ResetPasswordForm
 from .models import User
-from utils.email_service import send_email
 
 
 # Create your views here.
@@ -119,8 +119,6 @@ class ForgotPasswordView(View):
                 send_email('فعالسازی حساب کاربری', user.email, {'user': user}, 'emails/forgot_password.html')
                 return redirect(reverse('home_page'))
 
-                # send message
-                pass
         context = {
             'forget_password_form': forget_password_form
         }
@@ -158,3 +156,9 @@ class ResetPasswordView(View):
             'user': user
         }
         return render(request, 'account_module/Reset_password.html', context)
+
+
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        return redirect(reverse('login_page'))
