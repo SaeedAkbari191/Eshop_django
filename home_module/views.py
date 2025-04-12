@@ -41,6 +41,12 @@ def site_footer_components(request):
 
 
 class AboutView(TemplateView):
-    model = Product
     template_name = 'home_module/AboutUs.html'
-    context_object_name = 'products'
+
+    def get_context_data(self, **kwargs):
+        context = super(AboutView, self).get_context_data(**kwargs)
+        site_setting: SiteSetting = SiteSetting.objects.filter(is_main_setting=True).first()
+        context = {
+            'site_setting': site_setting
+        }
+        return context
