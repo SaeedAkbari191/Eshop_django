@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'contact_module',
     'home_module',
     'account_module',
+    'site_module',
     'django_render_partial',
 ]
 
