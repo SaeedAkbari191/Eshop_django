@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import View, TemplateView
 from site_module.models import SiteSetting, FooterLinkBox
+from product_module.models import Product
 
 
 # Create your views here.
@@ -31,9 +32,15 @@ def site_header_components(request):
 
 def site_footer_components(request):
     setting = SiteSetting.objects.filter(is_main_setting=True).first()
-    footer_link_boxes:FooterLinkBox = FooterLinkBox.objects.all()
+    footer_link_boxes: FooterLinkBox = FooterLinkBox.objects.all()
     context = {
         'site_setting': setting,
         'footer_link_boxes': footer_link_boxes
     }
     return render(request, 'shared/site_footer_components.html', context)
+
+
+class AboutView(TemplateView):
+    model = Product
+    template_name = 'home_module/AboutUs.html'
+    context_object_name = 'products'
