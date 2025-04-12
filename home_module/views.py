@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import View, TemplateView
+from site_module.models import SiteSetting, FooterLinkBox
 
 
 # Create your views here.
@@ -21,8 +22,18 @@ class HomeView(TemplateView):
 
 
 def site_header_components(request):
-    return render(request, 'shared/site_header_components.html')
+    setting = SiteSetting.objects.filter(is_main_setting=True).first()
+    context = {
+        'site_setting': setting
+    }
+    return render(request, 'shared/site_header_components.html', context)
 
 
 def site_footer_components(request):
-    return render(request, 'shared/site_footer_components.html')
+    setting = SiteSetting.objects.filter(is_main_setting=True).first()
+    footer_link_boxes:FooterLinkBox = FooterLinkBox.objects.all()
+    context = {
+        'site_setting': setting,
+        'footer_link_boxes': footer_link_boxes
+    }
+    return render(request, 'shared/site_footer_components.html', context)

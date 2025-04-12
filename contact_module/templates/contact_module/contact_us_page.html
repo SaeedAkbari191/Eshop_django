@@ -19,7 +19,16 @@
             <hr class="mb-4">
 
             <div class="row">
+                <div class="col-lg-4 mt-4 mt-lg-0">
+                    <div class="contact-info bg-light p-4 rounded shadow ">
+                        <h2 class="mb-3 text-center">Contact Information</h2>
+                        <p><strong>Address:</strong> {{ site_setting.address }}</p>
 
+                        <p><strong>Phone:</strong> {{ site_setting.phone }}</p>
+                        <p><strong>Fax:</strong> {{ site_setting.fax }} </p>
+                        <p><strong>Email:</strong> <a href="">{{ site_setting.email }}</a></p>
+                    </div>
+                </div>
                 <div class="col-lg-8">
                     <div class="contact-form bg-light p-4 rounded shadow">
                         <h2 class="text-center mb-4">Get in Touch</h2>
@@ -52,21 +61,10 @@
                     </div>
                 </div>
 
-                <div class="col-lg-4 mt-4 mt-lg-0">
-                    <div class="contact-info bg-light p-4 rounded shadow text-center">
-                        <h2 class="mb-3">Contact Information</h2>
-                        <p><strong>TechnoGraphy Group 1614</strong></p>
-                        <p>Berlin, Germany</p>
-                        <p>Business Center, 2nd Floor, Suite 54</p>
-                        <p><strong>Phone:</strong> +49 30 1234567</p>
-                        <p><strong>Fax:</strong> +49 30 1234568</p>
-                        <p><strong>Email:</strong> <a href="mailto:info@1614GP.eu">info@1614GP.eu</a></p>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>
-
 {% endblock %}
 
 

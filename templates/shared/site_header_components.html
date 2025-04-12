@@ -1,6 +1,6 @@
 <header>
     <div class="containeres top-nav">
-        <a href="index.html" class="logo"><img src="/static/img/logo-black.png" alt=""></a>
+        <a href="index.html" class="logo"><img src="{{ site_setting.site_logo.url }}" alt=""></a>
         <form action="" class="search">
             <input type="search" placeholder="Search for products...">
             <button type="submit">Search</button>
@@ -24,7 +24,7 @@
             <ul id="menu">
                 <span onclick="close_menu()" class="bg-overlay"></span>
                 <i onclick="close_menu()" class="fa-regular fa-circle-xmark btn_close_menu"></i>
-                <img class="logo_menu" src="img/logo-black.png" alt="">
+                <img class="logo_menu" src="{{ site_setting.site_logo.url }}" alt="">
 
                 <li class="active"><a href="{% url 'home_page' %}" style="text-decoration: none">home</a></li>
                 <li><a href="{% url 'product_list' %}" style="text-decoration: none">all products</a></li>

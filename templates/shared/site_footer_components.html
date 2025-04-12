@@ -1,6 +1,7 @@
 <footer>
     <div class="containeres">
         <div class="big_row">
+            {#            #TODO dynamic images#}
             <img src="/static/img/logo-white.png" alt="">
             <div class="hotline">
                 <i class="fa-solid fa-headset"></i>
@@ -13,57 +14,52 @@
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit consectetur.</p>
         </div>
 
-        <div class="row">
-            <h4>FAQs & Help</h4>
+        {% for footer_link_box in footer_link_boxes %}
+            <div class="row">
+                <h4>{{ footer_link_box.title }}</h4>
 
-            <div class="links">
-                <a href="#">F.A.Q.’s</a>
-                <a href="#">Ordering Tracking</a>
-                <a href="#">Contacts</a>
-                <a href="#">Events</a>
-                <a href="#">Help Center</a>
+                {% for link in footer_link_box.footerlink_set.all %}
+                    <div class="links">
+                        <a href="#">{{ link.title }}</a>
+                    </div>
+                {% endfor %}
+
+
             </div>
-        </div>
+        {% endfor %}
 
 
-        <div class="row">
-            <h4>Shipping & Delivery</h4>
-
-            <div class="links">
-                <a href="#">Delivery Information</a>
-                <a href="#">Discount</a>
-                <a href="#">Payment & Shipping</a>
-                <a href="#">Estimated Delivery Time</a>
-                <a href="#">Shipping Guide</a>
-            </div>
-        </div>
 
 
-        <div class="row">
-            <h4>Information</h4>
-
-            <div class="links">
-                <a href="#">Popular</a>
-                <a href="#">Our Services</a>
-                <a href="#">Your Account</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms & Condition</a>
-            </div>
-        </div>
-
+        {##}
+        {#        <div class="row">#}
+        {#            <h4>Shipping & Delivery</h4>#}
+        {#            <div class="links">#}
+        {#                <a href="#">Delivery Information</a>#}
+        {#                <a href="#">Discount</a>#}
+        {#                <a href="#">Payment & Shipping</a>#}
+        {#                <a href="#">Estimated Delivery Time</a>#}
+        {#                <a href="#">Shipping Guide</a>#}
+        {#            </div>#}
+        {#        </div>#}
+        {##}
+        {##}
+        {#        <div class="row">#}
+        {#            <h4>Information</h4>#}
+        {#            <div class="links">#}
+        {#                <a href="#">Popular</a>#}
+        {#                <a href="#">Our Services</a>#}
+        {#                <a href="#">Your Account</a>#}
+        {#                <a href="#">Privacy Policy</a>#}
+        {#                <a href="#">Terms & Condition</a>#}
+        {#            </div>#}
+        {#        </div>#}
 
     </div>
 
     <div class="bottom_footer">
         <div class="containeres">
-            <p>Copyright &copy; <span>Topico.</span> all rights reserved</p>
-
-            <div class="payment_img">
-                <img src="/static/img/payment-1.png" alt="">
-                <img src="/static/img/payment-2.png" alt="">
-                <img src="/static/img/payment-3.png" alt="">
-                <img src="/static/img/payment-4.png" alt="">
-            </div>
+            <p><span>{{ site_setting.name }}</span> {{ site_setting.copy_right }}</p>
         </div>
     </div>
 </footer>
