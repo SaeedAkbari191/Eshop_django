@@ -8,7 +8,11 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ['title', 'brand', 'price', 'short_description', 'is_active']
 
 
+class ProductCategoryAdmin(admin.ModelAdmin):
+    list_display = ['title', 'parent', 'is_active']
+
+
 admin.site.register(Product, ProductAdmin)
-admin.site.register(ProductCategory)
+admin.site.register(ProductCategory, ProductCategoryAdmin)
 admin.site.register(ProductBrand)
 admin.site.register(ProductTag)

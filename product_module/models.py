@@ -5,6 +5,8 @@ from django.utils.text import slugify
 
 # Create your models here.
 class ProductCategory(models.Model):
+    parent = models.ForeignKey('ProductCategory', on_delete=models.CASCADE, null=True, blank=True,
+                               verbose_name='Parent Category')
     title = models.CharField(max_length=300, db_index=True, verbose_name="Title")
     url_title = models.CharField(max_length=300, db_index=True, verbose_name="url-title")
     is_active = models.BooleanField(default=True, verbose_name="Active / Passive")
