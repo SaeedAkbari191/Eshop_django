@@ -1573,6 +1573,7 @@ header .links ul .btn_close_menu {
     color: var(--dark-color);
     font-size: 18px;
     margin-bottom: 20px;
+    line-height: 1.6;
 }
 
 /*.about .aboutText .total {*/
