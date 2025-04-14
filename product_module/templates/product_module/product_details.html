@@ -12,14 +12,15 @@
 
             <div class="img_item">
                 <div class="big_img">
-                    <img id="bigImg" src="/static/img/product/product-1.jpg" alt="">
+
+                    <img id="bigImg" src="{{ products.image1.url }}" alt="">
                 </div>
 
                 <div class="sm_imgs">
-                    <img onclick="ChangeItemImage(this.src)" src="/static/img/product/product-1.jpg" alt="">
-                    <img onclick="ChangeItemImage(this.src)" src="/static/img/product/product1.jpg" alt="">
-                    <img onclick="ChangeItemImage(this.src)" src="/static/img/product/product-2.jpg" alt="">
-                    <img onclick="ChangeItemImage(this.src)" src="/static/img/product/product2.jpg" alt="">
+                    <img onclick="ChangeItemImage(this.src)" src="{{ products.image1.url }}" alt="">
+                    <img onclick="ChangeItemImage(this.src)" src="{{ products.image2.url }}" alt="">
+                    {# <img onclick="ChangeItemImage(this.src)" src="/static/img/product/product-2.jpg" alt="">#}
+                    {# <img onclick="ChangeItemImage(this.src)" src="/static/img/product/product2.jpg" alt="">#}
                 </div>
             </div>
 

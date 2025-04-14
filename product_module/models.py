@@ -38,7 +38,8 @@ class Product(models.Model):
     category = models.ManyToManyField(ProductCategory,
                                       verbose_name="Category",
                                       related_name="product_category")
-    image = models.ImageField(upload_to='product', verbose_name='Product Image', blank=True, null=True)
+    image1 = models.ImageField(upload_to='product', verbose_name='First Image', blank=True, null=True)
+    image2 = models.ImageField(upload_to='product', verbose_name='Second Image', blank=True, null=True)
     brand = models.ForeignKey(ProductBrand, verbose_name="Brand", on_delete=models.CASCADE, null=True, blank=True)
     quantity = models.PositiveIntegerField(verbose_name="Quantity")
     price = models.IntegerField(verbose_name="Price")
