@@ -111,9 +111,46 @@ back_to_top.addEventListener("click", function () {
 })
 
 
-function toggleSubcategories(element) {
-    const subList = element.nextElementSibling;
-    const arrow = element.querySelector(".arrow");
-    subList.classList.toggle("open");
-    arrow.classList.toggle("rotate");
+// function toggleSubcategories(element) {
+//     const subList = element.nextElementSibling;
+//     const arrow = element.querySelector(".arrow");
+//     subList.classList.toggle("open");
+//     arrow.classList.toggle("rotate");
+// }
+
+// function toggleExclusive(clickedElement) {
+//     const allSubLists = document.querySelectorAll('.subcategory-list');
+//     const allArrows = document.querySelectorAll('.arrow');
+//
+//     allSubLists.forEach(list => list.classList.remove('open'));
+//     allArrows.forEach(arrow => arrow.classList.remove('rotate'));
+//
+//     const subList = clickedElement.nextElementSibling;
+//     const arrow = clickedElement.querySelector(".arrow");
+//
+//     subList.classList.add('open');
+//     arrow.classList.add('rotate');
+// }
+
+function toggleExclusive(element) {
+    const subcategoryList = element.nextElementSibling;
+    const arrow = element.querySelector('.arrow');
+
+    // اگر زیرشاخه باز است، آن را ببندید و جهت فلش را به حالت اول بازگردانید
+    if (subcategoryList.classList.contains('open')) {
+        subcategoryList.classList.remove('open');
+        arrow.classList.remove('rotate');
+    } else {
+        // در غیر این صورت، اول همه زیرشاخه‌ها را ببندید
+        const allSubcategories = document.querySelectorAll('.subcategory-list');
+        allSubcategories.forEach(list => list.classList.remove('open'));
+
+        // سپس فلش‌های همه را به حالت اولیه برگردانید
+        const allArrows = document.querySelectorAll('.arrow');
+        allArrows.forEach(arrow => arrow.classList.remove('rotate'));
+
+        // زیرشاخه انتخاب‌شده را باز کرده و فلش را بچرخانید
+        subcategoryList.classList.add('open');
+        arrow.classList.add('rotate');
+    }
 }

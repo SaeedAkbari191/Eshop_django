@@ -13,10 +13,12 @@ class ProductListView(ListView):
     ordering = ['-price']
     paginate_by = 1
 
-    # def get_queryset(self):
-    #     base_query = super(ProductListView, self).get_queryset()
-    #     data = base_query.filter(is_active=True)
-    #     return data
+    def get_queryset(self):
+        query = super(ProductListView, self).get_queryset()
+        category_name = self.kwargs.get('category')
+        if category_name is not None:
+            query = query.filter(category__url_title__iexact=category_name)
+        return query
 
 
 class ProductDetailView(DetailView):

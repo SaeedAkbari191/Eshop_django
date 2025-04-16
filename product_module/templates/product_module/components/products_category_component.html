@@ -5,18 +5,20 @@
         {% for main_category in main_categories %}
             <div class="category">
                 {% if main_category.productcategory_set.all %}
-                    <div class="category-title" onclick="toggleSubcategories(this)">
+                    <div class="category-title" onclick="toggleExclusive(this)">
                         <span>{{ main_category.title }}</span>
                         <span class="arrow">&#9654;</span>
                     </div>
                     <ul class="subcategory-list">
                         {% for sub in main_category.productcategory_set.all %}
-                            <li><a href="#">{{ sub.title }}</a></li>
+                            <li>
+                                <a href="{% url 'product_by_category_list' category=sub.url_title %}">{{ sub.title }}</a>
+                            </li>
                         {% endfor %}
                     </ul>
                 {% else %}
                     <div class="category-title no-sub">
-                        <a href="#">{{ main_category.title }}</a>
+                        <a href="{% url 'product_by_category_list' category=main_category.url_title %}">{{ main_category.title }}</a>
                     </div>
                 {% endif %}
             </div>
