@@ -7,7 +7,7 @@
                 <i class="fa-solid fa-headset"></i>
                 <div class="text">
                     <h5>Hotline Free 24/24:</h5>
-                    <h6>(+100) 123 456 7890</h6>
+                    <h6>{{ site_setting.phone }}</h6>
                 </div>
             </div>
 
@@ -18,11 +18,12 @@
             <div class="row">
                 <h4>{{ footer_link_box.title }}</h4>
 
-                {% for link in footer_link_box.footerlink_set.all %}
-                    <div class="links">
+
+                <div class="links">
+                    {% for link in footer_link_box.footerlink_set.all %}
                         <a href="#">{{ link.title }}</a>
-                    </div>
-                {% endfor %}
+                    {% endfor %}
+                </div>
 
 
             </div>
@@ -59,7 +60,7 @@
 
     <div class="bottom_footer">
         <div class="containeres">
-            <p><span>{{ site_setting.name }}</span> {{ site_setting.copy_right }}</p>
+            <p><span>{{ site_setting.site_name }}</span> {{ site_setting.copy_right }}</p>
         </div>
     </div>
 </footer>

@@ -5,6 +5,7 @@ var cart = document.querySelector('.cart');
 function open_cart() {
     cart.classList.add("active")
 }
+
 function close_cart() {
     cart.classList.remove("active")
 }
@@ -16,6 +17,7 @@ var menu = document.querySelector('#menu');
 function open_menu() {
     menu.classList.add("active")
 }
+
 function close_menu() {
     menu.classList.remove("active")
 }
@@ -29,7 +31,6 @@ function ChangeItemImage(img) {
 }
 
 
-
 /* add itmes in cart */
 
 var all_products_json;
@@ -37,7 +38,7 @@ var all_products_json;
 var items_in_cart = document.querySelector(".items_in_cart");
 let product_cart = [];
 
-function addToCart(id , btn) {
+function addToCart(id, btn) {
     product_cart.push(all_products_json[id])
     btn.classList.add("active")
 
@@ -54,7 +55,7 @@ let price_cart_Head = document.querySelector('.price_cart_Head');
 function getCartItems() {
     let total_price = 0;
     let items_c = "";
-    
+
     for (let i = 0; i < product_cart.length; i++) {
         items_c += `
 
@@ -69,7 +70,7 @@ function getCartItems() {
         
         `
         total_price += product_cart[i].price
-        
+
     }
     items_in_cart.innerHTML = items_c
 
@@ -88,9 +89,9 @@ function remove_from_cart(index) {
     let addToCartButtons = document.querySelectorAll(".fa-cart-plus");
     for (let i = 0; i < addToCartButtons.length; i++) {
         addToCartButtons[i].classList.remove("active")
-        
-        product_cart.forEach(product =>{
-            if(product.id == i){
+
+        product_cart.forEach(product => {
+            if (product.id == i) {
                 addToCartButtons[i].classList.add("active")
             }
         })
@@ -102,9 +103,17 @@ function remove_from_cart(index) {
 
 let back_to_top = document.querySelector(".back_to_top")
 
-back_to_top.addEventListener("click", function(){
+back_to_top.addEventListener("click", function () {
     window.scrollTo({
         top: 0,
-        behavior:"smooth"
+        behavior: "smooth"
     })
 })
+
+
+function toggleSubcategories(element) {
+    const subList = element.nextElementSibling;
+    const arrow = element.querySelector(".arrow");
+    subList.classList.toggle("open");
+    arrow.classList.toggle("rotate");
+}

@@ -1,6 +1,6 @@
 from django.views.generic import ListView, DetailView
 from django.shortcuts import render, get_object_or_404
-from .models import Product
+from .models import Product, ProductCategory
 
 
 # Create your views here.
@@ -23,3 +23,11 @@ class ProductDetailView(DetailView):
     model = Product
     template_name = 'product_module/product_details.html'
     context_object_name = 'products'
+
+
+def category_partial(request):
+    product_main_category = ProductCategory.objects.filter(is_active=True, parent_id=None)
+    context = {
+        'main_categories': product_main_category
+    }
+    return render(request, 'product_module/components/products_category_component.html', context)

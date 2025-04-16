@@ -28,7 +28,7 @@
 
                 <li class="active"><a href="{% url 'home_page' %}" style="text-decoration: none">home</a></li>
                 <li><a href="{% url 'product_list' %}" style="text-decoration: none">all products</a></li>
-                <li><a href="" style="text-decoration: none">about us</a></li>
+                <li><a href="{% url 'about_us_page' %}" style="text-decoration: none">about us</a></li>
                 <li><a href="{% url 'contact_us_page' %}" style="text-decoration: none">contact</a></li>
             </ul>
             {% if request.user.is_authenticated %}

@@ -1,0 +1,65 @@
+<div class="filter">
+    <h2>filter</h2>
+    <div class="categories filter_item">
+        <h4>categories</h4>
+        {% for main_category in main_categories %}
+            <div class="category">
+                {% if main_category.productcategory_set.all %}
+                    <div class="category-title" onclick="toggleSubcategories(this)">
+                        <span>{{ main_category.title }}</span>
+                        <span class="arrow">&#9654;</span>
+                    </div>
+                    <ul class="subcategory-list">
+                        {% for sub in main_category.productcategory_set.all %}
+                            <li><a href="#">{{ sub.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <div class="category-title no-sub">
+                        <a href="#">{{ main_category.title }}</a>
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+
+    <div class="filter_item">
+        <h4>Brand</h4>
+        <div class="content">
+
+            <div class="item">
+                <span>Apple</span>
+                <input type="checkbox">
+            </div>
+
+            <div class="item">
+                <span>samsung</span>
+                <input type="checkbox">
+            </div>
+
+
+            <div class="item">
+                <span>intel</span>
+                <input type="checkbox">
+            </div>
+
+
+            <div class="item">
+                <span>oppo</span>
+                <input type="checkbox">
+            </div>
+
+            <div class="item">
+                <span>xiaomi</span>
+                <input type="checkbox">
+            </div>
+
+            <div class="item">
+                <span>huawei</span>
+                <input type="checkbox">
+            </div>
+
+        </div>
+    </div>
+</div>

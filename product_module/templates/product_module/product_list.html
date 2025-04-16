@@ -1,4 +1,5 @@
 {% extends 'shared/layout.html' %}
+{% load render_partial %}
 
 {% block title %}product list{% endblock %}
 
@@ -20,88 +21,7 @@
                 filter <i class="fa-solid fa-filter"></i>
             </span>
 
-            <div class="filter">
-                <h2>filter</h2>
-
-                <div class="filter_item">
-                    <h4>categorie</h4>
-                    <div class="content">
-
-                        <div class="item">
-                            <span>Phones</span>
-                            <input type="checkbox">
-                        </div>
-
-                        <div class="item">
-                            <span>Tablets</span>
-                            <input type="checkbox">
-                        </div>
-
-
-                        <div class="item">
-                            <span>Electronics</span>
-                            <input type="checkbox">
-                        </div>
-
-
-                        <div class="item">
-                            <span>TV</span>
-                            <input type="checkbox">
-                        </div>
-
-                        <div class="item">
-                            <span>Fashion</span>
-                            <input type="checkbox">
-                        </div>
-
-                        <div class="item">
-                            <span>Watches</span>
-                            <input type="checkbox">
-                        </div>
-
-                    </div>
-                </div>
-
-
-                <div class="filter_item">
-                    <h4>Brand</h4>
-                    <div class="content">
-
-                        <div class="item">
-                            <span>Apple</span>
-                            <input type="checkbox">
-                        </div>
-
-                        <div class="item">
-                            <span>samsung</span>
-                            <input type="checkbox">
-                        </div>
-
-
-                        <div class="item">
-                            <span>intel</span>
-                            <input type="checkbox">
-                        </div>
-
-
-                        <div class="item">
-                            <span>oppo</span>
-                            <input type="checkbox">
-                        </div>
-
-                        <div class="item">
-                            <span>xiaomi</span>
-                            <input type="checkbox">
-                        </div>
-
-                        <div class="item">
-                            <span>huawei</span>
-                            <input type="checkbox">
-                        </div>
-
-                    </div>
-                </div>
-            </div>
+            {% render_partial 'product_module.views.category_partial' %}
 
             <div id="products_dev" class="products_dev">
 
