@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'home_module',
     'account_module',
     'site_module',
+    'user_panel_module',
     'django_render_partial',
     'sorl.thumbnail',
 ]

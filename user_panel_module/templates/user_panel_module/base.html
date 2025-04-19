@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+      /* Custom color overrides if needed */
+      .bg-primary {
+        background-color: #1e3a8a;
+      } /* Deep Blue */
+      .text-gold {
+        color: #fbbf24!important;
+      } /* Gold */
+      .border-gold {
+        border-color: #fbbf24;
+      }
+      .hover\:bg-lightblue:hover {
+        background-color: #e0f2fe;
+      } /* Light blue hover */
+    </style>
+  </head>
+  <body class="bg-gray-100 font-sans">
+    <div class="flex min-h-screen">
+      <!-- Sidebar -->
+      <aside class="w-64 bg-white shadow-lg flex flex-col">
+        <div class="p-6 text-2xl font-extrabold text-blue-800 tracking-wide">
+          MyPanel
+        </div>
+        <nav class="flex-1 px-4 space-y-2">
+          <a
+            href="#"
+            class="flex items-center gap-2 py-2 px-3 rounded hover:bg-lightblue text-gray-700 transition"
+          >
+            <i class="ph ph-gauge text-black-700 text-xl"></i> Dashboard
+          </a>
+          <a
+            href="#"
+            class="flex items-center gap-2 py-2 px-3 rounded hover:bg-lightblue text-gray-700 transition"
+          >
+            <i class="ph ph-user-circle text-blue-700 text-xl"></i> Profile
+          </a>
+          <a
+            href="#"
+            class="flex items-center gap-2 py-2 px-3 rounded hover:bg-lightblue text-gray-700 transition"
+          >
+            <i class="ph ph-gear text-blue-700 text-xl"></i> Settings
+          </a>
+        </nav>
+        <div class="p-4 border-t">
+          <a
+            href="#"
+            class="text-red-500 text-sm hover:underline flex items-center gap-1"
+          >
+            <i class="ph ph-sign-out"></i> Logout
+          </a>
+        </div>
+      </aside>
+
+      <!-- Main content -->
+      <div class="flex-1 flex flex-col">
+        <!-- Header -->
+        <header
+          class="bg-white shadow px-6 py-4 flex flex-wrap md:flex-nowrap justify-between items-center gap-2"
+        >
+          <h1 class="text-xl font-semibold text-gray-800">Dashboard</h1>
+          <div class="flex items-center space-x-3">
+            <span class="text-gray-700 hidden sm:inline">John Doe</span>
+            <img
+              src="https://i.pravatar.cc/40"
+              alt="Avatar"
+              class="rounded-full w-10 h-10 border-2 border-gold"
+            />
+          </div>
+        </header>
+
+        <!-- Page content -->
+        <main class="flex-1 p-6">
+          <div class="text-gray-600 text-lg">Welcome to your dashboard.</div>
+
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

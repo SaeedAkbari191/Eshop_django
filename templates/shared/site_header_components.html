@@ -26,10 +26,26 @@
                 <i onclick="close_menu()" class="fa-regular fa-circle-xmark btn_close_menu"></i>
                 <img class="logo_menu" src="{{ site_setting.site_logo.url }}" alt="">
 
-                <li class="active"><a href="{% url 'home_page' %}" style="text-decoration: none">home</a></li>
-                <li><a href="{% url 'product_list' %}" style="text-decoration: none">all products</a></li>
-                <li><a href="{% url 'about_us_page' %}" style="text-decoration: none">about us</a></li>
-                <li><a href="{% url 'contact_us_page' %}" style="text-decoration: none">contact</a></li>
+                <li class="{% if request.resolver_match.url_name == 'home_page' %}active{% endif %} ">
+                    <a href="{% url 'home_page' %}" style="text-decoration: none">
+                        home
+                    </a>
+                </li>
+                <li class="{% if request.resolver_match.url_name == 'product_list' %}active{% endif %}">
+                    <a href="{% url 'product_list' %}" style="text-decoration: none">
+                        all products
+                    </a>
+                </li>
+                <li class="{% if request.resolver_match.url_name == 'about_us_page' %}active{% endif %}">
+                    <a href="{% url 'about_us_page' %}" style="text-decoration: none">
+                        about us
+                    </a>
+                </li>
+                <li class="{% if request.resolver_match.url_name == 'contact_us_page' %}active{% endif %}">
+                    <a href="{% url 'contact_us_page' %}" style="text-decoration: none">
+                        contact
+                    </a>
+                </li>
             </ul>
             {% if request.user.is_authenticated %}
                 <div class="loging_signup">
