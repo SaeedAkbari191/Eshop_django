@@ -1,0 +1,316 @@
+{% extends 'user_panel_module/base.html' %}
+
+{% block title %}
+    Settings
+{% endblock %}
+
+{% block content %}
+    <header class="dashboard-header">
+        <h1>Account Settings</h1>
+        <div class="header-actions">
+            <div class="notification-bell">
+                <i class="fas fa-bell"></i>
+                <span class="notification-count">3</span>
+            </div>
+            <div class="user-menu" onclick="window.location.href='profile.html'">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User">
+                <span>John Doe</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Settings Tabs -->
+    <div class="settings-tabs">
+        <button class="tab-btn active" data-tab="account">Account</button>
+        <button class="tab-btn" data-tab="notifications">Notifications</button>
+        <button class="tab-btn" data-tab="security">Security</button>
+        <button class="tab-btn" data-tab="payment">Payment</button>
+        <button class="tab-btn" data-tab="advanced">Advanced</button>
+    </div>
+
+    <!-- Tab Content -->
+    <div class="settings-content">
+        <!-- Account Tab -->
+        <div id="account" class="tab-pane active">
+            <form class="settings-form">
+                <h2><i class="fas fa-user-cog"></i> Account Information</h2>
+
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" value="John Doe">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" value="john.doe@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" value="+1 (555) 123-4567">
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label for="language">Language</label>
+                        <select id="language">
+                            <option value="en" selected>English</option>
+                            <option value="es">Español</option>
+                            <option value="fr">Français</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="timezone">Timezone</label>
+                        <select id="timezone">
+                            <option value="-5" selected>New York (UTC-5)</option>
+                            <option value="0">London (UTC+0)</option>
+                            <option value="+3.5">Tehran (UTC+3:30)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Privacy Settings</label>
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" checked>
+                            Make my profile visible to other users
+                        </label>
+                        <label>
+                            <input type="checkbox">
+                            Allow search by email
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn cancel-btn">Cancel</button>
+                    <button type="submit" class="btn save-btn">Save Changes</button>
+                </div>
+            </form>
+
+            <form class="settings-form password-form">
+                <h2><i class="fas fa-lock"></i> Change Password</h2>
+
+                <div class="form-group">
+                    <label for="current-password">Current Password</label>
+                    <input type="password" id="current-password">
+                </div>
+
+                <div class="form-group">
+                    <label for="new-password">New Password</label>
+                    <input type="password" id="new-password">
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm-password">Confirm New Password</label>
+                    <input type="password" id="confirm-password">
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn save-btn">Change Password</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Notifications Tab -->
+        <div id="notifications" class="tab-pane">
+            <form class="settings-form">
+                <h2><i class="fas fa-bell"></i> Notification Settings</h2>
+
+                <div class="notification-category">
+                    <h3><i class="fas fa-shopping-cart"></i> Orders</h3>
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" checked>
+
+                            Email - Order confirmation
+                        </label>
+                        <label>
+                            <input type="checkbox" checked>
+                            Email - Shipment notification
+                        </label>
+                        <label>
+                            <input type="checkbox">
+                            SMS - Order confirmation
+                        </label>
+                    </div>
+                </div>
+
+                <div class="notification-category">
+                    <h3><i class="fas fa-tag"></i> Promotions</h3>
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" checked>
+                            Email - Special offers
+                        </label>
+                        <label>
+                            <input type="checkbox">
+                            SMS - Special offers
+                        </label>
+                    </div>
+                </div>
+
+                <div class="notification-category">
+                    <h3><i class="fas fa-comment"></i> Feedback</h3>
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" checked>
+                            Email - Review requests
+                        </label>
+                        <label>
+                            <input type="checkbox" checked>
+                            In-app - New reviews
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn cancel-btn">Cancel</button>
+                    <button type="submit" class="btn save-btn">Save Changes</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Security Tab -->
+        <div id="security" class="tab-pane">
+            <form class="settings-form">
+                <h2><i class="fas fa-shield-alt"></i> Account Security</h2>
+
+                <div class="security-item">
+                    <div class="security-info">
+                        <h3>Two-Factor Authentication</h3>
+                        <p>Enhance your account security by enabling 2FA</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+
+                <div class="security-item">
+                    <div class="security-info">
+                        <h3>Connected Devices</h3>
+                        <p>3 devices in the last 30 days</p>
+                    </div>
+                    <button type="button" class="btn view-btn">View</button>
+                </div>
+
+                <div class="security-item">
+                    <div class="security-info">
+                        <h3>Login History</h3>
+                        <p>Last login: 2 hours ago from New York</p>
+                    </div>
+
+                    <button type="button" class="btn view-btn">View</button>
+                </div>
+
+                <div class="security-item">
+                    <div class="security-info">
+                        <h3>Active Sessions</h3>
+                        <p>1 active session</p>
+                    </div>
+                    <button type="button" class="btn logout-btn">Logout All Devices</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Payment Tab -->
+        <div id="payment" class="tab-pane">
+            <form class="settings-form">
+                <h2><i class="fas fa-credit-card"></i> Payment Methods</h2>
+
+                <div class="payment-methods">
+                    <div class="payment-card">
+                        <div class="payment-card-info">
+                            <i class="fab fa-cc-visa"></i>
+                            <span>Credit Card •••• 4242</span>
+                            <small>Expires: 12/25</small>
+                        </div>
+                        <button type="button" class="btn remove-btn">Remove</button>
+                    </div>
+
+                    <div class="payment-card">
+                        <div class="payment-card-info">
+                            <i class="fab fa-paypal"></i>
+                            <span>PayPal •••• john.doe@example.com</span>
+                        </div>
+                        <button type="button" class="btn remove-btn">Remove</button>
+                    </div>
+                </div>
+
+                <button type="button" class="btn add-payment-btn">
+                    <i class="fas fa-plus"></i> Add New Payment Method
+                </button>
+
+                <h2 class="mt-30"><i class="fas fa-receipt"></i> Transactions</h2>
+                <button type="button" class="btn view-transactions-btn">View Transaction History</button>
+
+                <h2 class="mt-30"><i class="fas fa-tag"></i> My Coupons</h2>
+                <div class="coupons-list">
+                    <div class="coupon-item">
+                        <div class="coupon-code">WELCOME20</div>
+                        <div class="coupon-details">
+                            <h4>20% Off First Purchase</h4>
+                            <p>Expires: Jun 20, 2023</p>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Advanced Tab -->
+        <div id="advanced" class="tab-pane">
+            <form class="settings-form">
+                <h2><i class="fas fa-sliders-h"></i> Advanced Settings</h2>
+
+                <div class="form-group">
+                    <label for="theme">Theme</label>
+                    <select id="theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="system">System Default</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="density">Display Density</label>
+                    <select id="density">
+
+                        <option value="comfortable">Comfortable</option>
+                        <option value="compact">Compact</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>API Settings (For Developers)</label>
+                    <div class="api-keys">
+                        <div class="api-key-item">
+                            <code>sk_test_4eC39HqLyjWDarjtT1zdp7dc</code>
+                            <button type="button" class="btn copy-btn">Copy</button>
+                        </div>
+                        <button type="button" class="btn generate-btn">Generate New Key</button>
+                    </div>
+                </div>
+
+                <div class="danger-zone">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Danger Zone</h3>
+                    <p>These actions are irreversible. Please proceed with caution.</p>
+
+                    <div class="danger-actions">
+                        <button type="button" class="btn export-btn">
+                            <i class="fas fa-file-export"></i> Export My Data
+                        </button>
+
+                        <button type="button" class="btn delete-btn">
+                            <i class="fas fa-trash-alt"></i> Delete Account
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
