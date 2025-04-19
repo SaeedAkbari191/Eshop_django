@@ -1,0 +1,73 @@
+{% extends 'user_panel_module/base.html' %}
+
+{% block title %}
+    Orders
+{% endblock %}
+
+{% block content %}
+    <main class="main-content">
+        <header class="dashboard-header">
+            <h1>My Orders</h1>
+            <div class="header-actions">
+                <!-- Same header actions as dashboard -->
+            </div>
+        </header>
+
+        <!-- Orders Filter -->
+        <div class="orders-filter">
+            <div class="filter-options">
+                <button class="active">All Orders</button>
+                <button>Completed</button>
+                <button>Processing</button>
+                <button>Cancelled</button>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="Search orders..."/>
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+
+        <!-- Orders List -->
+        <div class="orders-list">
+            <div class="order-card">
+                <div class="order-header">
+                    <div class="order-info">
+                        <span class="order-id">Order #ORD-2023-001</span>
+                        <span class="order-date">Placed on Jun 12, 2023</span>
+                    </div>
+                    <div class="order-total">
+                        <span>$129.99</span>
+                        <span class="status completed">Completed</span>
+                    </div>
+                </div>
+
+                <div class="order-products">
+                    <div class="product-item">
+                        <img src="../img/product/1.png" alt="Product"/>
+
+                        <div class="product-details">
+                            <h4>Xbox Wireless Controller</h4>
+                            <p>Quantity: 1</p>
+                            <p>$59.99</p>
+                        </div>
+                    </div>
+                    <!-- More products -->
+                </div>
+
+                <div class="order-actions">
+                    <button class="btn reorder">Reorder</button>
+                    <button
+                            class="btn view-details"
+                            onclick="window.location.href='order-details.html'"
+                    >
+                        View Details
+                    </button>
+                </div>
+            </div>
+
+            <!-- More order cards -->
+        </div>
+
+
+    </main>
+{% endblock %}
