@@ -26,9 +26,14 @@ class ProductDetailView(DetailView):
     template_name = 'product_module/product_details.html'
     context_object_name = 'products'
 
+    # def get_queryset(self):
+    #     query = super(ProductDetailView, self).get_queryset()
+    #     query = query.filter(is_active=True)
+    #     return query
+
 
 def category_partial(request):
-    product_main_category = ProductCategory.objects.filter(is_active=True, parent_id=None)
+    product_main_category = ProductCategory.objects.filter(is_active=True, parent_id=None).prefetch_related('productcategory_set')
     context = {
         'main_categories': product_main_category
     }
