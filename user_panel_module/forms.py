@@ -7,7 +7,7 @@ from account_module.models import User
 class EditProfileModelForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'avatar', 'address']
+        fields = ['first_name', 'last_name', 'avatar', 'address', 'about_user']
 
         widgets = {
             'first_name': forms.TextInput(attrs={
@@ -25,10 +25,18 @@ class EditProfileModelForm(forms.ModelForm):
                 'id': 'imageUpload',
                 'style': 'display: none'
             }),
+
             'address': forms.Textarea(attrs={
                 'placeholder': 'Address',
                 'rows': 3,
                 'id': 'address',
+
+            }),
+
+            'about_user': forms.Textarea(attrs={
+                'placeholder': 'About User',
+                'rows': 5,
+                'id': 'about_user',
 
             })
         }
@@ -38,22 +46,6 @@ class EditProfileModelForm(forms.ModelForm):
             'last_name': 'Last Name',
             'avatar': 'Change Photo',
             'address': 'Address',
+            'about_user': 'About User'
         }
-        error_messages = {
-            'full_name': {
-                'required': 'Please enter your Full Name.',
-                'max_length': 'Full Name cannot be more than 200 characters.',
-            },
-            'email': {
-                'required': 'Please enter your Email.',
-                'max_length': 'Email cannot be more than 100 characters.',
-            },
-            'title': {
-                'required': 'Please enter your Title.',
-            },
-            'message': {
-                'required': 'Please enter your message.',
-                'max_length': 'message cannot be more than 200 characters.',
-            }
 
-        }

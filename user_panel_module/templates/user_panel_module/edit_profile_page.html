@@ -14,18 +14,17 @@
 
     <!-- Profile Edit Form -->
     <section class="profile-edit-section">
-        <form id="profileForm" action="{% url 'edit_profile_page' %}" method="POST">
+        <form  action="{% url 'edit_profile_page' %}" method="POST">
             {% csrf_token %}
             <div class="form-header">
                 <h2>Personal Information</h2>
-                <button
-                        type="button"
-                        class="cancel-btn"
-                        onclick="window.location.href='{% url 'user_panel_dashboard' %}'"
-                >
-                    Cancel
-                </button>
-                <button type="submit" class="save-btn">Save Changes</button>
+                        <button
+                                type="button"
+                                class="cancel-btn"
+                                onclick="window.location.href='{% url 'user_panel_dashboard' %}'">Cancel
+                        </button>
+                        <button type="submit" class="save-btn">Save Changes</button>
+
             </div>
 
             <div class="form-content">
@@ -54,12 +53,17 @@
                         <label for="last_name">{{ edit_profile_form.last_name.label }}</label>
                         {{ edit_profile_form.last_name }}
                     </div>
-
-
                     <div class="form-group">
                         <label for="address">  {{ edit_profile_form.address.label }}</label>
                         {{ edit_profile_form.address }}
                     </div>
+                    <div class="form-group">
+                        <label for="about_user">  {{ edit_profile_form.about_user.label }}</label>
+                        {{ edit_profile_form.about_user }}
+                    </div>
+
+
+
                 </div>
             </div>
         </form>
