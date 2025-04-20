@@ -1,10 +1,13 @@
 <aside class="sidebar">
     <div class="user-profile">
-        <img
-                src="https://randomuser.me/api/portraits/men/32.jpg"
+
+        {% if current_user.avatar %}
+           <img
+                src="{{ current_user.avatar.url }}"
                 alt="Profile"
                 class="profile-img"
         />
+        {% endif %}
         <h3>John Doe</h3>
         <p>Premium Member</p>
     </div>

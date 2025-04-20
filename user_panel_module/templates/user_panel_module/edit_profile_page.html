@@ -14,27 +14,29 @@
 
     <!-- Profile Edit Form -->
     <section class="profile-edit-section">
-        <form  action="{% url 'edit_profile_page' %}" method="POST">
+        <form action="{% url 'edit_profile_page' %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-header">
                 <h2>Personal Information</h2>
-                        <button
-                                type="button"
-                                class="cancel-btn"
-                                onclick="window.location.href='{% url 'user_panel_dashboard' %}'">Cancel
-                        </button>
-                        <button type="submit" class="save-btn">Save Changes</button>
+                <button
+                        type="button"
+                        class="cancel-btn"
+                        onclick="window.location.href='{% url 'user_panel_dashboard' %}'">Cancel
+                </button>
+                <button type="submit" class="save-btn">Save Changes</button>
 
             </div>
 
             <div class="form-content">
                 <div class="profile-picture-edit">
                     <div class="photo-container">
-                        <img
-                                src="https://randomuser.me/api/portraits/men/32.jpg"
-                                alt="Profile"
-                                id="profileImage"
-                        />
+                        {% if current_user.avatar %}
+                            <img
+                                    src='{{ current_user.avatar.url }}'
+                                    alt="Profile"
+                                    id="profileImage"
+                            />
+                        {% endif %}
                         <label for="imageUpload" class="upload-btn">
                             <i class="fas fa-camera"></i>
                             <span>{{ edit_profile_form.avatar.label }}</span>
@@ -61,7 +63,6 @@
                         <label for="about_user">  {{ edit_profile_form.about_user.label }}</label>
                         {{ edit_profile_form.about_user }}
                     </div>
-
 
 
                 </div>

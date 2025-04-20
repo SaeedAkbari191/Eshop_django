@@ -192,55 +192,55 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     // Profile image upload (from profile page)
-    const imageUpload = document.getElementById('imageUpload');
-    if (imageUpload) {
-        imageUpload.addEventListener('change', function (e) {
-            if (e.target.files && e.target.files[0]) {
-                const reader = new FileReader();
-                const profileImage = document.getElementById('profileImage') ||
-                    document.querySelector('.profile-img');
-
-                reader.onload = function (event) {
-                    if (profileImage) {
-                        profileImage.src = event.target.result;
-                        // Update image in sidebar too
-                        const sidebarImage = document.querySelector('.sidebar .profile-img');
-                        if (sidebarImage) sidebarImage.src = event.target.result;
-                    }
-                }
-
-                reader.readAsDataURL(e.target.files[0]);
-            }
-        });
-    }
+    // const imageUpload = document.getElementById('imageUpload');
+    // if (imageUpload) {
+    //     imageUpload.addEventListener('change', function (e) {
+    //         if (e.target.files && e.target.files[0]) {
+    //             const reader = new FileReader();
+    //             const profileImage = document.getElementById('profileImage') ||
+    //                 document.querySelector('.profile-img');
+    //
+    //             reader.onload = function (event) {
+    //                 if (profileImage) {
+    //                     profileImage.src = event.target.result;
+    //                     // Update image in sidebar too
+    //                     const sidebarImage = document.querySelector('.sidebar .profile-img');
+    //                     if (sidebarImage) sidebarImage.src = event.target.result;
+    //                 }
+    //             }
+    //
+    //             reader.readAsDataURL(e.target.files[0]);
+    //         }
+    //     });
+    // }
 });
 
 // Initialize the dashboard
 fetchUserData();
 
-async function fetchUserData() {
-    try {
-        // In a real app, you would fetch from API
-        console.log('Fetching user data...');
-
-        // Simulate API call
-        setTimeout(() => {
-            // Update all profile images
-            const profileImages = document.querySelectorAll('.profile-img, #profileImage');
-            profileImages.forEach(img => {
-                img.src = 'https://randomuser.me/api/portraits/men/32.jpg';
-            });
-
-            // Update user name
-            const userNames = document.querySelectorAll('.user-profile h3, .user-menu span');
-            userNames.forEach(el => {
-                el.textContent = 'John Doe';
-            });
-        }, 500);
-    } catch (error) {
-        console.error('Error fetching user data:', error);
-    }
-}
+// async function fetchUserData() {
+//     try {
+//         // In a real app, you would fetch from API
+//         console.log('Fetching user data...');
+//
+//         // Simulate API call
+//         setTimeout(() => {
+//             // Update all profile images
+//             const profileImages = document.querySelectorAll('.profile-img, #profileImage');
+//             profileImages.forEach(img => {
+//                 img.src = 'https://randomuser.me/api/portraits/men/32.jpg';
+//             });
+//
+//             // Update user name
+//             const userNames = document.querySelectorAll('.user-profile h3, .user-menu span');
+//             userNames.forEach(el => {
+//                 el.textContent = 'John Doe';
+//             });
+//         }, 500);
+//     } catch (error) {
+//         console.error('Error fetching user data:', error);
+//     }
+// }
 
 document.addEventListener('DOMContentLoaded', function () {
     // تغییر بین تب‌های تنظیمات
