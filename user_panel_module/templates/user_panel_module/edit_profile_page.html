@@ -14,13 +14,14 @@
 
     <!-- Profile Edit Form -->
     <section class="profile-edit-section">
-        <form id="profileForm">
+        <form id="profileForm" action="{% url 'edit_profile_page' %}" method="POST">
+            {% csrf_token %}
             <div class="form-header">
                 <h2>Personal Information</h2>
                 <button
                         type="button"
                         class="cancel-btn"
-                        onclick="window.location.href='index.html'"
+                        onclick="window.location.href='{% url 'user_panel_dashboard' %}'"
                 >
                     Cancel
                 </button>
@@ -37,72 +38,27 @@
                         />
                         <label for="imageUpload" class="upload-btn">
                             <i class="fas fa-camera"></i>
-                            <span>Change Photo</span>
+                            <span>{{ edit_profile_form.avatar.label }}</span>
                         </label>
-                        <input
-                                type="file"
-                                id="imageUpload"
-                                accept="image/*"
-                                style="display: none"
-                        />
+                        {{ edit_profile_form.avatar }}
+
                     </div>
                 </div>
-
                 <div class="form-fields">
                     <div class="form-group">
-                        <label for="fullName">Full Name</label>
-                        <input type="text" id="fullName" value="John Doe" required/>
+                        <label for="first_name">{{ edit_profile_form.first_name.label }}</label>
+                        {{ edit_profile_form.first_name }}
                     </div>
 
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input
-                                type="email"
-                                id="email"
-                                value="john.doe@example.com"
-                                required
-                        />
+                        <label for="last_name">{{ edit_profile_form.last_name.label }}</label>
+                        {{ edit_profile_form.last_name }}
                     </div>
+
 
                     <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" value="+1 (555) 123-4567"/>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="birthDate">Date of Birth</label>
-                            <input type="date" id="birthDate" value="1990-01-15"/>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Gender</label>
-                            <div class="radio-group">
-                                <label>
-                                    <input
-                                            type="radio"
-                                            name="gender"
-                                            value="male"
-                                            checked
-                                    />
-                                    Male
-                                </label>
-                                <label>
-                                    <input type="radio" name="gender" value="female"/>
-                                    Female
-                                </label>
-                                <label>
-                                    <input type="radio" name="gender" value="other"/> Other
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="address">Address</label>
-                        <textarea id="address" rows="3">
-123 Main Street, New York, NY 10001</textarea
-                        >
+                        <label for="address">  {{ edit_profile_form.address.label }}</label>
+                        {{ edit_profile_form.address }}
                     </div>
                 </div>
             </div>
