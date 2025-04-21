@@ -8,9 +8,17 @@
 
     <div class="top_page">
         <div class="containeres">
-            <h1>Experience the Future of Technology with Our Topico.</h1>
-            <p>Find everything you need to transform your home into a smart, connected space. Our Topico store offers a
-                wide range of devices to fit your needs</p>
+            {% if products %}
+                <h1>Experience the Future of Technology with Our Topico.</h1>
+                <p>Find everything you need to transform your home into a smart, connected space. Our Topico store
+                    offers a
+                    wide range of devices to fit your needs</p>
+            {% else %}
+                <div class="alert-wrapper" id="alertBox">
+                    Not Products Available
+                </div>
+            {% endif %}
+
         </div>
     </div>
 
@@ -20,8 +28,13 @@
             <span class="btn_filter" onclick="open_close_filter()">
                 filter <i class="fa-solid fa-filter"></i>
             </span>
+            <div class="filter">
+                <h2>filter</h2>
+                {% render_partial 'product_module.views.category_partial' %}
+                {% render_partial 'product_module.views.product_brand_component' %}
 
-            {% render_partial 'product_module.views.category_partial' %}
+            </div>
+
 
             <div id="products_dev" class="products_dev">
 
@@ -49,6 +62,8 @@
                             class="fa-solid fa-forward-step"></i></span></a>
                 {% endif %}
             </div>
+
+
         </div>
     </section>
 

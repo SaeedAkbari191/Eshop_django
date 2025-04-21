@@ -1,0 +1,14 @@
+<div class="filter_item">
+    <h4>Brand</h4>
+    <div class="content">
+
+        {% for brand in brands %}
+            <div class="item">
+                <a href="{% url 'product_by_brand_list' brand=brand.url_title %}"><span>{{ brand.title }}</span></a>
+                ( {{ brand.products_count }} )
+            </div>
+        {% endfor %}
+
+
+    </div>
+</div>

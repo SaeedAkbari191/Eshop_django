@@ -154,3 +154,7 @@ function toggleExclusive(element) {
         arrow.classList.add('rotate');
     }
 }
+
+setTimeout(() => {
+    document.getElementById('alertBox').classList.add('alert-hidden');
+}, 5000);
