@@ -322,15 +322,15 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // ذخیره تنظیمات
-    const settingsForms = document.querySelectorAll('.settings-form');
-    settingsForms.forEach(form => {
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            alert('تنظیمات با موفقیت ذخیره شد.');
-            // در یک برنامه واقعی، اینجا داده‌ها به سرور ارسال می‌شد
-            // await saveSettings();
-        });
-    });
+    // const settingsForms = document.querySelectorAll('.settings-form');
+    // settingsForms.forEach(form => {
+    //     form.addEventListener('submit', function (e) {
+    //         e.preventDefault();
+    //         alert('تنظیمات با موفقیت ذخیره شد.');
+    //         // در یک برنامه واقعی، اینجا داده‌ها به سرور ارسال می‌شد
+    //         // await saveSettings();
+    //     });
+    // });
 });
 
 // Settings Tab Functionality
@@ -388,14 +388,14 @@ if (logoutAllBtn) {
 }
 
 // Form Submissions
-const settingsForms = document.querySelectorAll('.settings-form');
-settingsForms.forEach(form => {
-    form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        alert('Settings saved successfully!');
-        // Actual save functionality would go here
-    });
-});
+// const settingsForms = document.querySelectorAll('.settings-form');
+// settingsForms.forEach(form => {
+//     form.addEventListener('submit', function (e) {
+//         e.preventDefault();
+//         alert('Settings saved successfully!');
+//         // Actual save functionality would go here
+//     });
+// });
 
 
 document.addEventListener('DOMContentLoaded', function () {
