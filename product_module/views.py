@@ -20,6 +20,10 @@ class ProductListView(ListView):
         query = super(ProductListView, self).get_queryset()
         category_name = self.kwargs.get('category')
         brand_name = self.kwargs.get('brand')
+        request = self.request
+        start_price = request.GET.get('start_price')
+        if start_price is not None:
+            query = query.filter(price__gte=start_price)
         if category_name is not None:
             query = query.filter(category__url_title__iexact=category_name)
         if brand_name is not None:
