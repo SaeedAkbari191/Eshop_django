@@ -110,130 +110,134 @@
 
                 <div id="swiper_items_sale" class="products swiper-wrapper">
 
-                    <div class="product swiper-slide">
-                        <div class="icons">
-                            <span><i onclick="addToCart(1,this)" class="fa-solid fa-cart-plus add-to-cart"></i></span>
-                            <span><i class="fa-solid fa-heart"></i></span>
-                            <span><i class="fa-solid fa-share"></i></span>
+                    {% for product in products %}
+                        <div class="product swiper-slide">
+                            <div class="icons">
+                                <span><i onclick="addToCart(1,this)"
+                                         class="fa-solid fa-cart-plus add-to-cart"></i></span>
+                                <span><i class="fa-solid fa-heart"></i></span>
+                                <span><i class="fa-solid fa-share"></i></span>
+                            </div>
+                            <span class="sale_present">%20</span>
+                            <div class="img_product">
+                                <img src="{{ product.image1.url }}" alt="">
+                                <img class="img_hover" src="{{ product.image2.url }}" alt="">
+                            </div>
+                            <h3 class="name_product"><a href="#">Product 1</a></h3>
+                            <div class="stars">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <div class="price">
+                                <p><span>$80</span></p>
+                                <p class="old_price">$100</p>
+                            </div>
                         </div>
-                        <span class="sale_present">%20</span>
-                        <div class="img_product">
-                            <img src="/static/img/product/product-1.jpg" alt="">
-                            <img class="img_hover" src="/static/img/product/product1.jpg" alt="">
-                        </div>
-                        <h3 class="name_product"><a href="#">Product 1</a></h3>
-                        <div class="stars">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <div class="price">
-                            <p><span>$80</span></p>
-                            <p class="old_price">$100</p>
-                        </div>
-                    </div>
+                    {% endfor %}
 
-                    <div class="product swiper-slide">
-                        <div class="icons">
-                            <span><i class="fa-solid fa-cart-plus add-to-cart" data-id="2"></i></span>
-                            <span><i class="fa-solid fa-heart"></i></span>
-                            <span><i class="fa-solid fa-share"></i></span>
-                        </div>
-                        <span class="sale_present">%15</span>
-                        <div class="img_product">
-                            <img src="/static/img/product/product-1.jpg" alt="">
-                            <img class="img_hover" src="/static/img/product/product1.jpg" alt="">
-                        </div>
-                        <h3 class="name_product"><a href="#">Product 2</a></h3>
-                        <div class="stars">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <div class="price">
-                            <p><span>$120</span></p>
-                            <p class="old_price">$140</p>
-                        </div>
-                    </div>
 
-                    <div class="product swiper-slide">
-                        <div class="icons">
-                            <span><i class="fa-solid fa-cart-plus add-to-cart" data-id="2"></i></span>
-                            <span><i class="fa-solid fa-heart"></i></span>
-                            <span><i class="fa-solid fa-share"></i></span>
-                        </div>
-                        <span class="sale_present">%15</span>
-                        <div class="img_product">
-                            <img src="/static/img/product/product-5.jpg" alt="">
-                            <img class="img_hover" src="/static/img/product/product5.jpg" alt="">
-                        </div>
-                        <h3 class="name_product"><a href="#">Product 2</a></h3>
-                        <div class="stars">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <div class="price">
-                            <p><span>$120</span></p>
-                            <p class="old_price">$140</p>
-                        </div>
-                    </div>
-
-                    <div class="product swiper-slide">
-                        <div class="icons">
-                            <span><i class="fa-solid fa-cart-plus add-to-cart" data-id="2"></i></span>
-                            <span><i class="fa-solid fa-heart"></i></span>
-                            <span><i class="fa-solid fa-share"></i></span>
-                        </div>
-                        <span class="sale_present">%15</span>
-                        <div class="img_product">
-                            <img src="/static/img/product/product-5.jpg" alt="">
-                            <img class="img_hover" src="/static/img/product/product5.jpg" alt="">
-                        </div>
-                        <h3 class="name_product"><a href="#">Product 2</a></h3>
-                        <div class="stars">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <div class="price">
-                            <p><span>$120</span></p>
-                            <p class="old_price">$140</p>
-                        </div>
-                    </div>
-
-                    <div class="product swiper-slide">
-                        <div class="icons">
-                            <span><i onclick="addToCart(1,this)" class="fa-solid fa-cart-plus add-to-cart"></i></span>
-                            <span><i class="fa-solid fa-heart"></i></span>
-                            <span><i class="fa-solid fa-share"></i></span>
-                        </div>
-                        <span class="sale_present">%20</span>
-                        <div class="img_product">
-                            <img src="/static/img/product/product-1.jpg" alt="">
-                            <img class="img_hover" src="/static/img/product/product1.jpg" alt="">
-                        </div>
-                        <h3 class="name_product"><a href="#">Product 1</a></h3>
-                        <div class="stars">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <div class="price">
-                            <p><span>$80</span></p>
-                            <p class="old_price">$100</p>
-                        </div>
-                    </div>
+                    {#                    <div class="product swiper-slide">#}
+                    {#                        <div class="icons">#}
+                    {#                            <span><i class="fa-solid fa-cart-plus add-to-cart" data-id="2"></i></span>#}
+                    {#                            <span><i class="fa-solid fa-heart"></i></span>#}
+                    {#                            <span><i class="fa-solid fa-share"></i></span>#}
+                    {#                        </div>#}
+                    {#                        <span class="sale_present">%15</span>#}
+                    {#                        <div class="img_product">#}
+                    {#                            <img src="/static/img/product/product-1.jpg" alt="">#}
+                    {#                            <img class="img_hover" src="/static/img/product/product1.jpg" alt="">#}
+                    {#                        </div>#}
+                    {#                        <h3 class="name_product"><a href="#">Product 2</a></h3>#}
+                    {#                        <div class="stars">#}
+                    {#                            <i class="fa-solid fa-star"></i>#}
+                    {#                            <i class="fa-solid fa-star"></i>#}
+                    {#                            <i class="fa-solid fa-star"></i>#}
+                    {#                            <i class="fa-solid fa-star"></i>#}
+                    {#                            <i class="fa-solid fa-star"></i>#}
+                    {#                        </div>#}
+                    {#                        <div class="price">#}
+                    {#                            <p><span>$120</span></p>#}
+                    {#                            <p class="old_price">$140</p>#}
+                    {#                        </div>#}
+                    {#                    </div>#}
+                    {##}
+                    {#                    <div class="product swiper-slide">#}
+                    {#                        <div class="icons">#}
+                    {#                            <span><i class="fa-solid fa-cart-plus add-to-cart" data-id="2"></i></span>#}
+                    {#                            <span><i class="fa-solid fa-heart"></i></span>#}
+                    {#                            <span><i class="fa-solid fa-share"></i></span>#}
+                    {#                        </div>#}
+                    {#                        <span class="sale_present">%15</span>#}
+                    {#                        <div class="img_product">#}
+                    {#                            <img src="/static/img/product/product-5.jpg" alt="">#}
+                    {#                            <img class="img_hover" src="/static/img/product/product5.jpg" alt="">#}
+                    {#                        </div>#}
+                    {#                        <h3 class="name_product"><a href="#">Product 2</a></h3>#}
+                    {#                        <div class="stars">#}
+                    {#                            <i class="fa-solid fa-star"></i>#}
+                    {#                            <i class="fa-solid fa-star"></i>#}
+                    {#                            <i class="fa-solid fa-star"></i>#}
+                    {#                            <i class="fa-solid fa-star"></i>#}
+                    {#                            <i class="fa-solid fa-star"></i>#}
+                    {#                        </div>#}
+                    {#                        <div class="price">#}
+                    {#                            <p><span>$120</span></p>#}
+                    {#                            <p class="old_price">$140</p>#}
+                    {#                        </div>#}
+                    {#                    </div>#}
+                    {##}
+                    {#                    <div class="product swiper-slide">#}
+                    {#                        <div class="icons">#}
+                    {#                            <span><i class="fa-solid fa-cart-plus add-to-cart" data-id="2"></i></span>#}
+                    {#                            <span><i class="fa-solid fa-heart"></i></span>#}
+                    {#                            <span><i class="fa-solid fa-share"></i></span>#}
+                    {#                        </div>#}
+                    {#                        <span class="sale_present">%15</span>#}
+                    {#                        <div class="img_product">#}
+                    {#                            <img src="/static/img/product/product-5.jpg" alt="">#}
+                    {#                            <img class="img_hover" src="/static/img/product/product5.jpg" alt="">#}
+                    {#                        </div>#}
+                    {#                        <h3 class="name_product"><a href="#">Product 2</a></h3>#}
+                    {#                        <div class="stars">#}
+                    {#                            <i class="fa-solid fa-star"></i>#}
+                    {#                            <i class="fa-solid fa-star"></i>#}
+                    {#                            <i class="fa-solid fa-star"></i>#}
+                    {#                            <i class="fa-solid fa-star"></i>#}
+                    {#                            <i class="fa-solid fa-star"></i>#}
+                    {#                        </div>#}
+                    {#                        <div class="price">#}
+                    {#                            <p><span>$120</span></p>#}
+                    {#                            <p class="old_price">$140</p>#}
+                    {#                        </div>#}
+                    {#                    </div>#}
+                    {##}
+                    {#                    <div class="product swiper-slide">#}
+                    {#                        <div class="icons">#}
+                    {#                            <span><i onclick="addToCart(1,this)" class="fa-solid fa-cart-plus add-to-cart"></i></span>#}
+                    {#                            <span><i class="fa-solid fa-heart"></i></span>#}
+                    {#                            <span><i class="fa-solid fa-share"></i></span>#}
+                    {#                        </div>#}
+                    {#                        <span class="sale_present">%20</span>#}
+                    {#                        <div class="img_product">#}
+                    {#                            <img src="/static/img/product/product-1.jpg" alt="">#}
+                    {#                            <img class="img_hover" src="/static/img/product/product1.jpg" alt="">#}
+                    {#                        </div>#}
+                    {#                        <h3 class="name_product"><a href="#">Product 1</a></h3>#}
+                    {#                        <div class="stars">#}
+                    {#                            <i class="fa-solid fa-star"></i>#}
+                    {#                            <i class="fa-solid fa-star"></i>#}
+                    {#                            <i class="fa-solid fa-star"></i>#}
+                    {#                            <i class="fa-solid fa-star"></i>#}
+                    {#                            <i class="fa-solid fa-star"></i>#}
+                    {#                        </div>#}
+                    {#                        <div class="price">#}
+                    {#                            <p><span>$80</span></p>#}
+                    {#                            <p class="old_price">$100</p>#}
+                    {#                        </div>#}
+                    {#                    </div>#}
 
                 </div>
 
@@ -416,7 +420,33 @@
     </section>
 
 
+    {% comment %} <section class="slide slide_product">
+        <div class="containeres">
+            <div class="top_slide">
+                <h2>Computer & Desktop <span>products</span></h2>
+            </div>
 
+            <div class="slide_with_img">
+
+
+                <div class="product_swip mySwiper">
+
+                    <div class="products other_product_swiper swiper-wrapper" id="other_product_swiper2">
+
+                    </div>
+
+                    <div class="swiper-button-next btn_Swip">
+                    </div>
+                    <div class="swiper-button-prev btn_Swip">
+                    </div>
+                </div>
+
+                <div class="categ_img">
+                    <a href="#"><img src="/static/img/banner/banner-sm-2.jpg" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </section>{% endcomment %}
 
     {% comment %}LAST BANNER{% endcomment %}
     <section class="banner">

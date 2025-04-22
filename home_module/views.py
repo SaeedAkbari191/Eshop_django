@@ -18,7 +18,8 @@ class HomeView(TemplateView):
 
         context['sliders'] = Sliders.objects.filter(is_active=True)
         context['banners'] = SiteBanner.objects.filter(is_active=True,
-                                                           position__iexact=SiteBanner.SiteBannerPosition.home)
+                                                       position__iexact=SiteBanner.SiteBannerPosition.home)
+        context['products'] = Product.objects.filter(is_active=True)
         return context
 
 
