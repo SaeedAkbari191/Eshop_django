@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import View, TemplateView
-from site_module.models import SiteSetting, FooterLinkBox, Sliders
+from site_module.models import SiteSetting, FooterLinkBox, Sliders, SiteBanner
 from product_module.models import Product
 
 
@@ -16,8 +16,11 @@ class HomeView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
         slider: Sliders = Sliders.objects.filter(is_active=True)
+        site_banner = SiteBanner.objects.filter(is_active=True, position__iexact=SiteBanner.SiteBannerPosition.home)
+
         context = {
             'sliders': slider,
+            'site_banner': site_banner,
         }
         return context
 

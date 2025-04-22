@@ -87,24 +87,13 @@
     <section class="banner">
         <div class="containeres">
 
-            <div class="banner_img">
-                <div class="glass_hover"></div>
-                <a href="#"></a>
-                <img src="/static/img/banner/banner-1.jpg" alt="">
-            </div>
-
-            <div class="banner_img">
-                <div class="glass_hover"></div>
-                <a href="#"></a>
-                <img src="/static/img/banner/banner-2.jpg" alt="">
-            </div>
-
-            <div class="banner_img">
-                <div class="glass_hover"></div>
-                <a href="#"></a>
-                <img src="/static/img/banner/banner-3.jpg" alt="">
-            </div>
-
+            {% for banner in site_banner %}
+                <div class="banner_img">
+                    <div class="glass_hover"></div>
+                    <a href="{{ banner.url_title }}"></a>
+                    <img src="{{ banner.image.url }}" alt="">
+                </div>
+            {% endfor %}
 
         </div>
     </section>
@@ -427,7 +416,7 @@
     </section>
 
 
-   {% comment %} <section class="slide slide_product">
+    {% comment %} <section class="slide slide_product">
         <div class="containeres">
             <div class="top_slide">
                 <h2>Computer & Desktop <span>products</span></h2>
