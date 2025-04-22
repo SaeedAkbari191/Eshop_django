@@ -87,7 +87,7 @@
     <section class="banner">
         <div class="containeres">
 
-            {% for banner in site_banner %}
+            {% for banner in banners %}
                 <div class="banner_img">
                     <div class="glass_hover"></div>
                     <a href="{{ banner.url_title }}"></a>
@@ -447,28 +447,15 @@
     {% comment %}LAST BANNER{% endcomment %}
     <section class="banner">
         <div class="containeres">
-            <div class="banner_img">
-                <div class="glass_hover"></div>
-                <a href="#"></a>
-                <img src="/static/img/banner/banner-6.jpg" alt="">
-            </div>
-
-            <div class="banner_img">
-                <div class="glass_hover"></div>
-                <a href="#"></a>
-                <img src="/static/img/banner/banner-7.jpg" alt="">
-            </div>
-
-            <div class="banner_img">
-                <div class="glass_hover"></div>
-                <a href="#"></a>
-                <img src="/static/img/banner/banner-8.jpg" alt="">
-            </div>
-
-
+            {% for banner in banners %}
+                <div class="banner_img">
+                    <div class="glass_hover"></div>
+                    <a href="{{ banner.url_title }}"></a>
+                    <img src="{{ banner.image.url }}" alt="">
+                </div>
+            {% endfor %}
         </div>
     </section>
-
 
     <div class="newsletter">
         <div class="containeres">

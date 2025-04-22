@@ -15,13 +15,10 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
-        slider: Sliders = Sliders.objects.filter(is_active=True)
-        site_banner = SiteBanner.objects.filter(is_active=True, position__iexact=SiteBanner.SiteBannerPosition.home)
 
-        context = {
-            'sliders': slider,
-            'site_banner': site_banner,
-        }
+        context['sliders'] = Sliders.objects.filter(is_active=True)
+        context['banners'] = SiteBanner.objects.filter(is_active=True,
+                                                           position__iexact=SiteBanner.SiteBannerPosition.home)
         return context
 
 
