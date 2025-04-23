@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import View, TemplateView
 from site_module.models import SiteSetting, FooterLinkBox, Sliders, SiteBanner
-from product_module.models import Product
+from product_module.models import Product, ProductCategory
 
 
 # Create your views here.
@@ -17,12 +17,14 @@ class HomeView(TemplateView):
         context = super(HomeView, self).get_context_data(**kwargs)
 
         sliders = Sliders.objects.filter(is_active=True)
-        banners = SiteBanner.objects.filter(is_active=True,
-                                            position__iexact=SiteBanner.SiteBannerPosition.home)
+        banners = SiteBanner.objects.filter(is_active=True, position__iexact=SiteBanner.SiteBannerPosition.home)
         products = Product.objects.filter(is_active=True)
+        product_main_category = ProductCategory.objects.prefetch_related('productcategory_set').filter(is_active=True,
+                                                                                                       parent_id=None)
 
         context = {
             'sliders': sliders,
+            'main_categories': product_main_category,
             'top_banners': banners[:3],
             'middle_banners': banners[3:5],
             'bottom_banners': banners[5:8],
