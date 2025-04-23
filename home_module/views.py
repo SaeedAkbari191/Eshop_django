@@ -18,7 +18,7 @@ class HomeView(TemplateView):
 
         sliders = Sliders.objects.filter(is_active=True)
         banners = SiteBanner.objects.filter(is_active=True, position__iexact=SiteBanner.SiteBannerPosition.home)
-        products = Product.objects.filter(is_active=True)
+        products = Product.objects.filter(is_active=True, is_deleted=False).order_by('-id')[:5]
         product_main_category = ProductCategory.objects.prefetch_related('productcategory_set').filter(is_active=True,
                                                                                                        parent_id=None)
 
