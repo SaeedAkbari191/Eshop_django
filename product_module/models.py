@@ -2,6 +2,8 @@ from django.urls import reverse
 from django.db import models
 from django.utils.text import slugify
 
+from account_module.models import User
+
 
 # Create your models here.
 class ProductCategory(models.Model):
@@ -76,3 +78,12 @@ class ProductTag(models.Model):
     class Meta:
         verbose_name = 'Product Tag'
         verbose_name_plural = 'Product Tags'
+
+
+class ProductVisit(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='product_visit')
+    ip_address = models.GenericIPAddressField(verbose_name="IP Address")
+    user_id = models.ForeignKey(User, verbose_name="User", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.product.title} / {self.ip_address}'

@@ -1,4 +1,5 @@
 {% extends 'shared/layout.html' %}
+{% load thumbnail %}
 {% block title %}
     Topoco
 {% endblock %}
@@ -93,11 +94,10 @@
         <div class="containeres">
             <div class="sale_sec mySwiper">
                 <div class="top_slide">
-                    <h2>on sale <span>product</span></h2>
+                    <h2>Latest <span>product</span></h2>
                 </div>
 
                 <div id="swiper_items_sale" class="products swiper-wrapper">
-
                     {% for product in products %}
                         <div class="product swiper-slide">
                             <div class="icons">
@@ -108,11 +108,15 @@
                             </div>
                             <span class="sale_present">%20</span>
                             <div class="img_product">
-                                <img src="{{ product.image1.url }}" alt="">
-                                <img class="img_hover" src="{{ product.image2.url }}" alt="">
+                                {% thumbnail product.image1 "400x400" quality=95 crop="center" as im %}
+                                    <img src="{{ im.url }}" alt="Product 1">
+                                {% endthumbnail %}
+                                {% thumbnail product.image2 "400x400" quality=95 crop="center" as im %}
+                                    <img class="img_hover" src="{{ im.url }}" alt="">
+                                {% endthumbnail %}
                             </div>
-                            <h3 class="name_product"><a
-                                    href="{% url 'product_detail' slug=product.slug %}">{{ product.title }}</a></h3>
+                            <h3 class="name_product">
+                                <a href="{% url 'product_detail' slug=product.slug %}">{{ product.title }}</a></h3>
                             <div class="stars">
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-solid fa-star"></i>
@@ -154,12 +158,9 @@
             </div>
 
             <div class="slide_with_img">
-
                 <div class="categ_img">
                     <a href="#"><img src="/static/img/banner/banner-sm-1.jpg" alt=""></a>
                 </div>
-
-
                 <div class="product_swip mySwiper">
                     <div class="products other_product_swiper swiper-wrapper" id="other_product_swiper">
                         {% for product in products %}
@@ -172,8 +173,13 @@
                                 </div>
                                 <span class="sale_present">%20</span>
                                 <div class="img_product">
-                                    <img src="{{ product.image1.url }}" alt="">
-                                    <img class="img_hover" src="{{ product.image2.url }}" alt="">
+                                    {% thumbnail product.image1 "400x400" quality=95 crop="center" as im %}
+                                        <img src="{{ im.url }}" alt="Product 1">
+                                    {% endthumbnail %}
+                                    {% thumbnail product.image2 "400x400" quality=95 crop="center" as im %}
+                                        <img class="img_hover" src="{{ im.url }}" alt="">
+                                    {% endthumbnail %}
+
                                 </div>
                                 <h3 class="name_product">
                                     <a href="{% url 'product_detail' slug=product.slug %}">

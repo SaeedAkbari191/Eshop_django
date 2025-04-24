@@ -24,7 +24,6 @@
 
     <section class="all_products">
         <div class="containeres">
-
             <span class="btn_filter" onclick="open_close_filter()">
                 filter <i class="fa-solid fa-filter"></i>
             </span>
@@ -32,17 +31,12 @@
                 <h2>filter</h2>
                 {% render_partial 'product_module.views.category_partial' %}
                 {% render_partial 'product_module.views.product_brand_component' %}
-
             </div>
 
-
             <div id="products_dev" class="products_dev">
-
                 {% for product in products %}
                     {% include 'includes/products_items_partial.html' with product=product %}
                 {% endfor %}
-
-
             </div>
             <div class="pagination">
                 {% if page_obj.has_previous %}
@@ -62,8 +56,6 @@
                             class="fa-solid fa-forward-step"></i></span></a>
                 {% endif %}
             </div>
-
-
         </div>
     </section>
 

@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import View, TemplateView
 from site_module.models import SiteSetting, FooterLinkBox, Sliders, SiteBanner
 from product_module.models import Product, ProductCategory
+from utils.convertor import group_list
 
 
 # Create your views here.
@@ -30,6 +31,7 @@ class HomeView(TemplateView):
             'bottom_banners': banners[5:8],
             'products': products,
         }
+        print(group_list(products))
         return context
 
 
