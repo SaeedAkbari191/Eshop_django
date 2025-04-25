@@ -133,6 +133,36 @@
                 <div id="swiper_items_sale" class="products swiper-wrapper">
                     {% for product in most_visit_product %}
                         {% include 'includes/products_items_partial.html' with product=product %}
+                        {#                        <div class="product swiper-slide">#}
+                        {#                            <div class="icons">#}
+                        {#                                <span><i onclick="addToCart(1,this)"#}
+                        {#                                         class="fa-solid fa-cart-plus add-to-cart"></i></span>#}
+                        {#                                <span><i class="fa-solid fa-heart"></i></span>#}
+                        {#                                <span><i class="fa-solid fa-share"></i></span>#}
+                        {#                            </div>#}
+                        {#                            <span class="sale_present">%20</span>#}
+                        {#                            <div class="img_product">#}
+                        {#                                {% thumbnail product.image1 "400x400" quality=95 crop="center" as im %}#}
+                        {#                                    <img src="{{ im.url }}" alt="Product 1">#}
+                        {#                                {% endthumbnail %}#}
+                        {#                                {% thumbnail product.image2 "400x400" quality=95 crop="center" as im %}#}
+                        {#                                    <img class="img_hover" src="{{ im.url }}" alt="">#}
+                        {#                                {% endthumbnail %}#}
+                        {#                            </div>#}
+                        {#                            <h3 class="name_product">#}
+                        {#                                <a href="{% url 'product_detail' slug=product.slug %}">{{ product.title }}</a></h3>#}
+                        {#                            <div class="stars">#}
+                        {#                                <i class="fa-solid fa-star"></i>#}
+                        {#                                <i class="fa-solid fa-star"></i>#}
+                        {#                                <i class="fa-solid fa-star"></i>#}
+                        {#                                <i class="fa-solid fa-star"></i>#}
+                        {#                                <i class="fa-solid fa-star"></i>#}
+                        {#                            </div>#}
+                        {#                            <div class="price">#}
+                        {#                                <p><span>${{ product.price|intcomma }}</span></p>#}
+                        {#                                <p class="old_price">${{ product.old_price }}</p>#}
+                        {#                            </div>#}
+                        {#                        </div>#}
                     {% endfor %}
                 </div>
                 <div class="swiper-button-next btn_Swip"></div>
