@@ -1,8 +1,13 @@
+from django.db.models import Count
+from django.http import HttpRequest
 from django.shortcuts import render
 from django.views.generic import View, TemplateView
+from urllib3 import request
+
 from site_module.models import SiteSetting, FooterLinkBox, Sliders, SiteBanner
 from product_module.models import Product, ProductCategory
 from utils.convertor import group_list
+from utils.http_service import get_client_ip
 
 
 # Create your views here.
@@ -19,7 +24,9 @@ class HomeView(TemplateView):
 
         sliders = Sliders.objects.filter(is_active=True)
         banners = SiteBanner.objects.filter(is_active=True, position__iexact=SiteBanner.SiteBannerPosition.home)
-        products = Product.objects.filter(is_active=True, is_deleted=False).order_by('-id')[:5]
+        latest_product = Product.objects.filter(is_active=True, is_deleted=False).order_by('-id')[:5]
+        most_visit_product = Product.objects.filter(is_active=True, is_deleted=False).annotate(
+            visit_count=Count('productvisit')).order_by('-visit_count')[:12]
         product_main_category = ProductCategory.objects.prefetch_related('productcategory_set').filter(is_active=True,
                                                                                                        parent_id=None)
 
@@ -29,9 +36,10 @@ class HomeView(TemplateView):
             'top_banners': banners[:3],
             'middle_banners': banners[3:5],
             'bottom_banners': banners[5:8],
-            'products': products,
+            'latest_product': latest_product,
+            'most_visit_product': most_visit_product,
         }
-        print(group_list(products))
+
         return context
 
 

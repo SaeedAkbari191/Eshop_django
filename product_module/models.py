@@ -82,8 +82,12 @@ class ProductTag(models.Model):
 
 class ProductVisit(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='product_visit')
-    ip_address = models.GenericIPAddressField(verbose_name="IP Address")
-    user_id = models.ForeignKey(User, verbose_name="User", on_delete=models.CASCADE)
+    ip = models.GenericIPAddressField(verbose_name="IP Address")
+    user_id = models.ForeignKey(User, verbose_name="User", on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
-        return f'{self.product.title} / {self.ip_address}'
+        return f'{self.product.title} / {self.ip}'
+
+    class Meta:
+        verbose_name = 'Product Visit'
+        verbose_name_plural = 'Products Visit'

@@ -1,9 +1,9 @@
-from lib2to3.fixes.fix_input import context
-
 from django.db.models import Count
+from django.shortcuts import render
 from django.views.generic import ListView, DetailView
-from django.shortcuts import render, get_object_or_404
-from .models import Product, ProductCategory, ProductBrand
+
+from utils.http_service import get_client_ip
+from .models import Product, ProductCategory, ProductBrand, ProductVisit
 
 
 # Create your views here.
@@ -36,10 +36,23 @@ class ProductDetailView(DetailView):
     template_name = 'product_module/product_details.html'
     context_object_name = 'products'
 
-    # def get_queryset(self):
-    #     query = super(ProductDetailView, self).get_queryset()
-    #     query = query.filter(is_active=True)
-    #     return query
+    def get_context_data(self, **kwargs):
+        context = super(ProductDetailView, self).get_context_data(**kwargs)
+        load_product = self.object
+        print(load_product)
+        request = self.request
+        favorite_product_id = request.session.get('ProductFavorite')
+        context['is_favorite'] = favorite_product_id == str(load_product.id)
+
+        user_ip = get_client_ip(self.request)
+        user_id = None
+        if self.request.user.is_authenticated:
+            user_id = self.request.user
+        has_benn_visited = ProductVisit.objects.filter(ip__iexact=user_ip, product_id=load_product.id).exists()
+        if not has_benn_visited:
+            new_visit = ProductVisit(ip=user_ip, user_id=user_id, product_id=load_product.id)
+            new_visit.save()
+        return context
 
 
 def category_partial(request):
