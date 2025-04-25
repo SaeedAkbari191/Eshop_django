@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'user_panel_module',
     'django_render_partial',
     'sorl.thumbnail',
+    'django.contrib.humanize'
 ]
 
 MIDDLEWARE = [

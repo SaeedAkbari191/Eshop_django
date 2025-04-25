@@ -1,4 +1,5 @@
 {% extends 'shared/layout.html' %}
+{% load thumbnail %}
 
 
 {% block title %}
@@ -12,15 +13,23 @@
 
             <div class="img_item">
                 <div class="big_img">
+                    {% thumbnail products.image1 '160x160' quality=90 crop='center' as im %}
+                        <img id="bigImg" src="{{ im.url }}" alt="">
+                    {% endthumbnail %}
 
-                    <img id="bigImg" src="{{ products.image1.url }}" alt="">
                 </div>
 
                 <div class="sm_imgs">
-                    <img onclick="ChangeItemImage(this.src)" src="{{ products.image1.url }}" alt="">
-                    <img onclick="ChangeItemImage(this.src)" src="{{ products.image2.url }}" alt="">
-                     <img onclick="ChangeItemImage(this.src)" src="/static/img/product/product-2.jpg" alt="">
-                     <img onclick="ChangeItemImage(this.src)" src="/static/img/product/product2.jpg" alt="">
+                    {% thumbnail products.image1 '360x360' quality=90 crop='center' as im %}
+                        <img onclick="ChangeItemImage(this.src)" src="{{ im.url }}" alt="">
+                    {% endthumbnail %}
+                    {% thumbnail products.image2 '360x360' quality=90 crop='center' as im %}
+                        <img onclick="ChangeItemImage(this.src)" src="{{ im.url }}" alt="">
+                    {% endthumbnail %}
+
+
+                    <img onclick="ChangeItemImage(this.src)" src="/static/img/product/product-2.jpg" alt="">
+                    <img onclick="ChangeItemImage(this.src)" src="/static/img/product/product2.jpg" alt="">
                 </div>
             </div>
 
