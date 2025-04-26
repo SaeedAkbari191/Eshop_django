@@ -9,33 +9,25 @@
 {% block content %}
     <div class="item_detail">
         <div class="containeres">
-
-
             <div class="img_item">
                 <div class="big_img">
-                    {% thumbnail products.image1 '160x160' quality=90 crop='center' as im %}
+                    {% thumbnail products.image1 '260x260' quality=100 crop='center' as im %}
                         <img id="bigImg" src="{{ im.url }}" alt="">
                     {% endthumbnail %}
 
                 </div>
-
                 <div class="sm_imgs">
-                    {% thumbnail products.image1 '360x360' quality=90 crop='center' as im %}
-                        <img onclick="ChangeItemImage(this.src)" src="{{ im.url }}" alt="">
-                    {% endthumbnail %}
-                    {% thumbnail products.image2 '360x360' quality=90 crop='center' as im %}
-                        <img onclick="ChangeItemImage(this.src)" src="{{ im.url }}" alt="">
-                    {% endthumbnail %}
+                    {% for product in product_galleries %}
+                        {% thumbnail product.image '120x100' quality=90 crop='center' as im %}
+                            <img onclick="ChangeItemImage(this.src)" src="{{ im.url }}" alt="">
+                        {% endthumbnail %}
+                    {% endfor %}
 
-
-                    <img onclick="ChangeItemImage(this.src)" src="/static/img/product/product-2.jpg" alt="">
-                    <img onclick="ChangeItemImage(this.src)" src="/static/img/product/product2.jpg" alt="">
                 </div>
             </div>
 
             <div class="details_item">
                 <h1 class="name">{{ products.title|upper }}</h1>
-
 
                 <div class="price">
                     <p><span>${{ products.price }}</span></p>
@@ -45,7 +37,7 @@
                 <h5>Avaailability: <span>In Stock</span></h5>
                 <h5>Brand: <span>{{ products.brand.title |upper }}</span></h5>
 
-                <p class="text_p">{{ products.description }}</p>
+                <p class="text_p">{{ products.description |safe }}</p>
                 <h4>Hurry Up! Only {{ products.quantity }} products left in stock.</h4>
 
                 <button>add to cart <i class="fa-solid fa-cart-arrow-down"></i></button>
@@ -70,7 +62,6 @@
                 </div>
 
                 <div id="swiper_items_sale" class="products swiper-wrapper">
-
 
                 </div>
 

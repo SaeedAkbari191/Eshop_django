@@ -1178,12 +1178,12 @@ header .links ul .btn_close_menu {
 }
 
 .item_detail .img_item .big_img img {
-    width: 100%;
+    width: 85%;
 }
 
 .item_detail .img_item .sm_imgs {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     cursor: pointer;
 
 }

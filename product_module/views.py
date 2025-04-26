@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 
 from utils.http_service import get_client_ip
-from .models import Product, ProductCategory, ProductBrand, ProductVisit
+from .models import Product, ProductCategory, ProductBrand, ProductVisit, ProductGallery
 
 
 # Create your views here.
@@ -39,10 +39,11 @@ class ProductDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(ProductDetailView, self).get_context_data(**kwargs)
         load_product = self.object
-        print(load_product)
         request = self.request
         favorite_product_id = request.session.get('ProductFavorite')
         context['is_favorite'] = favorite_product_id == str(load_product.id)
+        context['product_galleries'] = ProductGallery.objects.filter(product_id=load_product.id).all()
+
 
         user_ip = get_client_ip(self.request)
         user_id = None
