@@ -7,7 +7,6 @@
 
     {% include 'shared/header_references.html' %}
     {% block extra_link %}
-
     {% endblock %}
 
     <title>{% block title %}{% endblock %}</title>
@@ -24,6 +23,7 @@
 {% render_partial 'home_module.views.site_footer_components' %}
 
 {% include 'shared/footer_references.html' %}
+{% block footer_references %}{% endblock %}
 
 
 </body>

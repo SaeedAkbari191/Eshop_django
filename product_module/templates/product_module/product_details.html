@@ -5,6 +5,9 @@
 {% block title %}
     {{ products.title }}
 {% endblock %}
+{% block extra_link %}
+    <link rel="stylesheet" href="/static/lib/image-lightBox/css/lightbox.css">
+{% endblock %}
 
 {% block content %}
     <div class="item_detail">
@@ -12,7 +15,7 @@
             <div class="img_item">
                 <div class="big_img">
                     {% thumbnail products.image1 '260x260' quality=100 crop='center' as im %}
-                        <img id="bigImg" src="{{ im.url }}" alt="">
+                        <a href="#saeed"><img id="bigImg" src="{{ im.url }}" alt=""></a>
                     {% endthumbnail %}
 
                 </div>
@@ -22,6 +25,9 @@
                             <img onclick="ChangeItemImage(this.src)" src="{{ im.url }}" alt="">
                         {% endthumbnail %}
                     {% endfor %}
+                    {% thumbnail products.image1 '120x100' quality=100 crop='center' as im %}
+                        <img onclick="ChangeItemImage(this.src)" src="{{ im.url }}" alt="">
+                    {% endthumbnail %}
 
                 </div>
             </div>
@@ -51,7 +57,6 @@
             </div>
         </div>
     </div>
-
     <section class="slide slide_sale">
         <div class="containeres">
 
@@ -73,14 +78,14 @@
             </div>
         </div>
     </section>
-
-
     <div class="back_to_top">
         <p>back to top</p>
     </div>
-
 {% endblock %}
 
+{% block footer_references %}
+    <script src="/static/lib/image-lightBox/js/lightbox.js"></script>
+{% endblock %}
 
 
 
