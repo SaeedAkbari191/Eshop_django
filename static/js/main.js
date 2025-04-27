@@ -25,9 +25,15 @@ function close_menu() {
 //change item image
 
 let bigImage = document.getElementById("bigImg");
+let show_large_image_modal = document.getElementById("show_large_image_modal");
+
 
 function ChangeItemImage(img) {
-    bigImage.src = img
+    let bigImageUrl = img.getAttribute('data-big');
+    bigImage.src = bigImageUrl
+    console.log(img)
+    show_large_image_modal.href = bigImageUrl
+
 }
 
 
