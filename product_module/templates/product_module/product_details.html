@@ -14,11 +14,11 @@
         <div class="containeres">
             <div class="img_item">
                 <div class="big_img">
-                    {% thumbnail products.image1 '260x260' quality=100 crop='center' as im %}
-                        <a id="show_large_image_modal" href="{{ products.image1.url }}" data-lightbox="product-image">
+                    <a id="show_large_image_modal" href="{{ products.image1.url }}" data-lightbox="product-image">
+                        {% thumbnail products.image1 '260x260' quality=100 crop='center' as im %}
                             <img id="bigImg" src="{{ im.url }}" alt="">
-                        </a>
-                    {% endthumbnail %}
+                            </a>
+                        {% endthumbnail %}
                 </div>
                 <div class="sm_imgs">
                     {% for product in product_galleries %}
@@ -66,17 +66,22 @@
             <div class="sale_sec mySwiper">
 
                 <div class="top_slide">
-                    <h2>on sale <span>product</span></h2>
+                    <h2>Related <span>product</span></h2>
                 </div>
 
                 <div id="swiper_items_sale" class="products swiper-wrapper">
-
+                    {% for related_product in related_products %}
+                        {% include 'includes/products_items_partial.html' with product=related_product %}
+                    {% endfor %}
                 </div>
 
                 <div class="swiper-button-next btn_Swip">
                 </div>
                 <div class="swiper-button-prev btn_Swip"></div>
 
+
+                <div class="swiper-button-next btn_Swip"></div>
+                <div class="swiper-button-prev btn_Swip"></div>
 
             </div>
         </div>
