@@ -43,7 +43,8 @@ class ProductDetailView(DetailView):
         favorite_product_id = request.session.get('ProductFavorite')
         context['is_favorite'] = favorite_product_id == str(load_product.id)
         context['product_galleries'] = ProductGallery.objects.filter(product_id=load_product.id).all()
-        context['related_products'] = Product.objects.filter(brand_id=load_product.brand_id).all()
+        context['related_products'] = Product.objects.filter(brand_id=load_product.brand_id).exclude(
+            pk=load_product.id).all()[:12]
 
         user_ip = get_client_ip(self.request)
         user_id = None
