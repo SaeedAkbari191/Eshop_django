@@ -17,8 +17,8 @@
                     <a id="show_large_image_modal" href="{{ products.image1.url }}" data-lightbox="product-image">
                         {% thumbnail products.image1 '260x260' quality=100 crop='center' as im %}
                             <img id="bigImg" src="{{ im.url }}" alt="">
-                            </a>
                         {% endthumbnail %}
+                     </a>
                 </div>
                 <div class="sm_imgs">
                     {% for product in product_galleries %}
@@ -74,11 +74,6 @@
                         {% include 'includes/products_items_partial.html' with product=related_product %}
                     {% endfor %}
                 </div>
-
-                <div class="swiper-button-next btn_Swip">
-                </div>
-                <div class="swiper-button-prev btn_Swip"></div>
-
 
                 <div class="swiper-button-next btn_Swip"></div>
                 <div class="swiper-button-prev btn_Swip"></div>

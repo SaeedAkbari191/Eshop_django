@@ -1,4 +1,5 @@
 {% load thumbnail %}
+{% load humanize %}
 <div class="product swiper-slide">
     <div class="icons">
         <span><i onclick="addToCart(1, this)" class="fa-solid fa-cart-plus"></i></span>
@@ -24,7 +25,7 @@
         {#                            <i class="fa-solid fa-star"></i>#}
     </div>
     <div class="price">
-        <p><span>{{ product.price }}</span></p>
+        <p><span>{{ product.price |intcomma }}</span></p>
         <p class="old_price">{{ product.old_price }}</p>
     </div>
 </div>

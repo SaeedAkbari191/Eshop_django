@@ -32,9 +32,7 @@ function ChangeItemImage(img) {
     let bigImageUrl = img.getAttribute('data-big');
     bigImage.src = bigImageUrl
     show_large_image_modal.href = bigImageUrl
-
 }
-
 
 /* add itmes in cart */
 
@@ -163,3 +161,9 @@ function toggleExclusive(element) {
 setTimeout(() => {
     document.getElementById('alertBox').classList.add('alert-hidden');
 }, 5000);
+
+var filter = document.querySelector(".filter")
+
+function open_close_filter() {
+    filter.classList.toggle("active")
+}
