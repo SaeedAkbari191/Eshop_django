@@ -45,7 +45,7 @@ function addToCart(id, btn) {
     product_cart.push(all_products_json[id])
     btn.classList.add("active")
 
-    console.log(product_cart);
+    console.log(id);
     getCartItems()
 }
 
@@ -166,4 +166,11 @@ var filter = document.querySelector(".filter")
 
 function open_close_filter() {
     filter.classList.toggle("active")
+}
+
+//  DD TO ORDER
+function AddToOrder(product_id) {
+    $.get('/order/add-to-order?product_id=' + product_id + '&count=' + 10).then(response => {
+        console.log(response);
+    })
 }

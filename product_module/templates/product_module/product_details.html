@@ -18,7 +18,7 @@
                         {% thumbnail products.image1 '260x260' quality=100 crop='center' as im %}
                             <img id="bigImg" src="{{ im.url }}" alt="">
                         {% endthumbnail %}
-                     </a>
+                    </a>
                 </div>
                 <div class="sm_imgs">
                     {% for product in product_galleries %}
@@ -49,7 +49,9 @@
                 <p class="text_p">{{ products.description |safe }}</p>
                 <h4>Hurry Up! Only {{ products.quantity }} products left in stock.</h4>
 
-                <button>add to cart <i class="fa-solid fa-cart-arrow-down"></i></button>
+                <button onclick="AddToOrder({{ products.id }})">add to cart
+                    <i class="fa-solid fa-cart-arrow-down"></i>
+                </button>
 
                 <div class="icons">
                     <span><i class="fa-regular fa-heart"></i></span>

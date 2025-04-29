@@ -7,7 +7,7 @@ from product_module.models import Product
 # Create your models here.
 
 class Order(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE ,verbose_name='User')
     is_paid = models.BooleanField(default=False, verbose_name='Is paid')
     payment_date = models.DateField(auto_now_add=True, blank=True, null=True)
 
