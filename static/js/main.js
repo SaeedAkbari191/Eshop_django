@@ -170,7 +170,8 @@ function open_close_filter() {
 
 //  DD TO ORDER
 function AddToOrder(product_id) {
-    $.get('/order/add-to-order?product_id=' + product_id + '&count=' + 10).then(response => {
+    const count = $('#product-count').val();
+    $.get('/order/add-to-order?product_id=' + product_id + '&count=' + count).then(response => {
         console.log(response);
     })
 }

@@ -48,6 +48,10 @@
 
                 <p class="text_p">{{ products.description |safe }}</p>
                 <h4>Hurry Up! Only {{ products.quantity }} products left in stock.</h4>
+                <p class="text_p">
+                    <label for="">count :</label>
+                    <input type="number" id="product-count">
+                </p>
 
                 <button onclick="AddToOrder({{ products.id }})">add to cart
                     <i class="fa-solid fa-cart-arrow-down"></i>
