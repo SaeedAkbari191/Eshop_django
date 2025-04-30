@@ -2,6 +2,7 @@ from itertools import product
 
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
+from unicodedata import digit
 
 from order_module.models import Order, OrderDetail
 from product_module.models import Product
@@ -12,10 +13,11 @@ def add_to_order(request):
     product_id = int(request.GET.get('product_id'))
     count = int(request.GET.get('count'))
 
-    if count < 1:
+    if count < 1 and count is not digit:
         return JsonResponse({
             'status': 'Invalid Count.',
             'text': 'Invalid Count.',
+            'icon': 'warning',
             'confirmButtonText': 'Ok!'
         })
     if request.user.is_authenticated:
@@ -33,18 +35,21 @@ def add_to_order(request):
             return JsonResponse({
                 'status': 'SUCCESS',
                 'text': 'The Product has been successfully added. to your shopping cart',
+                'icon': 'success',
                 'confirmButtonText': 'Ok!'
             })
 
         else:
             return JsonResponse({
                 'status': 'Not Found',
-                'text': 'Invalid Count.',
+                'text': 'Product Not Found',
+                'icon': 'error',
                 'confirmButtonText': 'Ok!'
             })
     else:
         return JsonResponse({
             'status': 'Not Authorized',
-            'text': 'Invalid Count.',
-            'confirmButtonText': 'Ok!'
+            'text': 'Please Log in to add the product to your shopping cart',
+            'confirmButtonText': 'Ok!',
+            'icon': 'error'
         })

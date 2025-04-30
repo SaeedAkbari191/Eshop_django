@@ -172,25 +172,42 @@ function open_close_filter() {
 function AddToOrder(product_id) {
     const count = $('#product-count').val();
     $.get('/order/add-to-order?product_id=' + product_id + '&count=' + count).then(response => {
-        if (response.status === 'SUCCESS') {
-            Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
-                icon: "success",
-                showCancelButton: false,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Ok!"
-            }).then((result) => {
-                // if (result.isConfirmed) {
-                //     Swal.fire({
-                //         title: "Deleted!",
-                //         text: "Your file has been deleted.",
-                //         icon: "success"
-                //     });
-                // }
-            });
-        }
+        Swal.fire({
+            title: "Are you sure?",
+            text: response.text,
+            icon: response.icon,
+            showCancelButton: false,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: response.confirmButtonText
+        }).then((result) => {
+            // if (result.isConfirmed) {
+            //     Swal.fire({
+            //         title: "Deleted!",
+            //         text: "Your file has been deleted.",
+            //         icon: "success"
+            //     });
+            // }
+        });
+        // if (response.status === 'SUCCESS') {
+        //     Swal.fire({
+        //         title: "Are you sure?",
+        //         text: "You won't be able to revert this!",
+        //         icon: "success",
+        //         showCancelButton: false,
+        //         confirmButtonColor: "#3085d6",
+        //         cancelButtonColor: "#d33",
+        //         confirmButtonText: "Ok!"
+        //     }).then((result) => {
+        //         if (result.isConfirmed) {
+        //             Swal.fire({
+        //                 title: "Deleted!",
+        //                 text: "Your file has been deleted.",
+        //                 icon: "success"
+        //             });
+        //         }
+        //     });
+        // }
     })
 }
 
