@@ -1,6 +1,6 @@
 from itertools import product
 
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 
 from order_module.models import Order, OrderDetail
@@ -24,9 +24,15 @@ def add_to_order(request):
             else:
                 new_details = OrderDetail(order_id=current_order.id, product_id=product_id, count=count)
                 new_details.save()
-            return HttpResponse('success end')
+            return JsonResponse({
+                'status': 'SUCCESS',
+            })
 
         else:
-            return HttpResponse('Not Found')
+            return JsonResponse({
+                'status': 'Not Found',
+            })
     else:
-        return HttpResponse('not auth')
+        return JsonResponse({
+            'status': 'Not Authorized',
+        })
