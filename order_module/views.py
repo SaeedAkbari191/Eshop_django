@@ -14,7 +14,9 @@ def add_to_order(request):
 
     if count < 1:
         return JsonResponse({
-            'status': 'Invalid Count.'
+            'status': 'Invalid Count.',
+            'text': 'Invalid Count.',
+            'confirmButtonText': 'Ok!'
         })
     if request.user.is_authenticated:
         product = Product.objects.filter(id=product_id, is_active=True, is_deleted=False).first()
@@ -30,13 +32,19 @@ def add_to_order(request):
                 new_details.save()
             return JsonResponse({
                 'status': 'SUCCESS',
+                'text': 'The Product has been successfully added. to your shopping cart',
+                'confirmButtonText': 'Ok!'
             })
 
         else:
             return JsonResponse({
                 'status': 'Not Found',
+                'text': 'Invalid Count.',
+                'confirmButtonText': 'Ok!'
             })
     else:
         return JsonResponse({
             'status': 'Not Authorized',
+            'text': 'Invalid Count.',
+            'confirmButtonText': 'Ok!'
         })
