@@ -49,18 +49,22 @@
                 <p class="text_p">{{ products.description |safe }}</p>
                 <h4>Hurry Up! Only {{ products.quantity }} products left in stock.</h4>
 
-                <div data-label="Quantity">
-                    <div class="quantity_control">
-                        <button class="decrease">-</button>
-                        <input type="number" id="product-count" value="1" min="1"/>
-                        <button class="increase">+</button>
+                <div class="quantity-wrapper">
+                    <div class="simple-quantity">
+                        <button class="sq-btn minus" type="button">−</button>
+                        <input type="number"
+                               id="product-count"
+                               class="sq-input"
+                               value="1"
+                               min="1"
+                               max="{{ products.quantity }}">
+                        <button class="sq-btn plus" type="button">+</button>
                     </div>
                 </div>
-{#                <p class="text_p">#}
-{#                    <label for="">count :</label>#}
-{#                    <input type="number" id="product-count">#}
-{#                </p>#}
-
+                {#                <p class="text_p">#}
+                {#                    <label for="">count :</label>#}
+                {#                    <input type="number" id="product-count">#}
+                {#                </p>#}
                 <button onclick="AddToOrder({{ products.id }})">add to cart
                     <i class="fa-solid fa-cart-arrow-down"></i>
                 </button>
