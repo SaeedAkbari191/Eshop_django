@@ -182,7 +182,6 @@ function AddToOrder(product_id) {
         }).then((result) => {
 
             if (result.isConfirmed && response.status ==='Not_Authorized') {
-
                 window.location.href = '/login';
 
             }

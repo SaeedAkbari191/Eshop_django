@@ -1876,7 +1876,7 @@ header .links ul .btn_close_menu {
     width: 30px;
     height: 30px;
     border: 1px solid var(--border-color);
-    background: #f5f6f9;
+    background: var(--main-color);
     cursor: pointer;
     border-radius: 3px;
     font-size: 16px;

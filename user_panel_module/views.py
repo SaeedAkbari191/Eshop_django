@@ -85,7 +85,7 @@ def user_panel_menu_components(request):
 
 
 def user_basket(request: HttpRequest):
-    current_order, created = Order.objects.get_or_create(is_paid=False, user=request.user)
+    current_order, created = Order.objects.prefetch_related('orderdetail_set').get_or_create(is_paid=False, user=request.user)
     total = 0
 
     for detail in current_order.orderdetail_set.all():
