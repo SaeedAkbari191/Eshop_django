@@ -178,36 +178,15 @@ function AddToOrder(product_id) {
             icon: response.icon,
             showCancelButton: false,
             confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
             confirmButtonText: response.confirmButtonText
         }).then((result) => {
-            // if (result.isConfirmed) {
-            //     Swal.fire({
-            //         title: "Deleted!",
-            //         text: "Your file has been deleted.",
-            //         icon: "success"
-            //     });
-            // }
+
+            if (result.isConfirmed && response.status ==='Not_Authorized') {
+
+                window.location.href = '/login';
+
+            }
         });
-        // if (response.status === 'SUCCESS') {
-        //     Swal.fire({
-        //         title: "Are you sure?",
-        //         text: "You won't be able to revert this!",
-        //         icon: "success",
-        //         showCancelButton: false,
-        //         confirmButtonColor: "#3085d6",
-        //         cancelButtonColor: "#d33",
-        //         confirmButtonText: "Ok!"
-        //     }).then((result) => {
-        //         if (result.isConfirmed) {
-        //             Swal.fire({
-        //                 title: "Deleted!",
-        //                 text: "Your file has been deleted.",
-        //                 icon: "success"
-        //             });
-        //         }
-        //     });
-        // }
     })
 }
 
