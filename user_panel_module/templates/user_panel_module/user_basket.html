@@ -1,5 +1,5 @@
 {% extends 'shared/layout.html' %}
-
+{% load humanize %}
 {% block title %}
     Basket
 {% endblock %}
@@ -24,83 +24,38 @@
                 </thead>
                 <tbody>
                 <!-- محصول اول -->
-                <tr>
-                    <td data-label="Product">
-                        <div class="product_item">
-                            <img src="/static/img/product/product1.jpg" alt="iPhone 13 Pro"/>
-                            <div class="product_info">
-                                <h4>
-                                    <a href="product_detail.html">iPhone 13 Pro 128GB</a>
-                                </h4>
-                                <p>Color: Graphite</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td data-label="Price" class="product_price">$999.00</td>
-                    <td data-label="Quantity">
-                        <div class="quantity_control">
-                            <button class="decrease">-</button>
-                            <input type="number" value="1" min="1"/>
-                            <button class="increase">+</button>
-                        </div>
-                    </td>
-                    <td data-label="Total" class="item_total">$999.00</td>
-                    <td data-label="Remove">
-                        <i class="fa-solid fa-trash remove_item"></i>
-                    </td>
-                </tr>
+                {% for detail in order.orderdetail_set.all %}
+                    <tr>
+                        <td data-label="Product">
+                            <div class="product_item">
+                                <img src="{{ detail.product.image1.url }}" alt="iPhone 13 Pro"/>
+                                <div class="product_info">
+                                    <h4>
+                                        <a href="">{{ detail.product.title }}</a>
+                                    </h4>
 
-                <!-- محصول دوم -->
-                <tr>
-                    <td data-label="Product">
-                        <div class="product_item">
-                            <img src="/static/img/product/product-2.jpg" alt="AirPods Pro"/>
-                            <div class="product_info">
-                                <h4>
-                                    <a href="product_detail.html">AirPods Pro (2nd Gen)</a>
-                                </h4>
-                                <p>With MagSafe Charging Case</p>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                    <td data-label="Price" class="product_price">$249.00</td>
-                    <td data-label="Quantity">
-                        <div class="quantity_control">
-                            <button class="decrease">-</button>
-                            <input type="number" value="2" min="1"/>
-                            <button class="increase">+</button>
-                        </div>
-                    </td>
-                    <td data-label="Total" class="item_total">$498.00</td>
-                    <td data-label="Remove">
-                        <i class="fa-solid fa-trash remove_item"></i>
-                    </td>
-                </tr>
-                <tr>
-                    <td data-label="Product">
-                        <div class="product_item">
-                            <img src="/static/img/products/product2.jpg" alt="AirPods Pro"/>
-                            <div class="product_info">
-                                <h4>
-                                    <a href="product_detail.html">AirPods Pro (2nd Gen)</a>
-                                </h4>
-                                <p>With MagSafe Charging Case</p>
+                        </td>
+                        <td data-label="Price" class="product_price">${{ detail.product.price }}</td>
+                        <td data-label="Quantity">
+                            <div class="quantity_control">
+                                <button class="decrease">-</button>
+                                <input type="number" value="{{ detail.count }}" min="1"/>
+                                <button class="increase">+</button>
                             </div>
-                        </div>
-                    </td>
-                    <td data-label="Price" class="product_price">$249.00</td>
-                    <td data-label="Quantity">
-                        <div class="quantity_control">
-                            <button class="decrease">-</button>
-                            <input type="number" value="2" min="1"/>
-                            <button class="increase">+</button>
-                        </div>
-                    </td>
-                    <td data-label="Total" class="item_total">$498.00</td>
-                    <td data-label="Remove">
-                        <i class="fa-solid fa-trash remove_item"></i>
-                    </td>
-                </tr>
+                        </td>
+                        <td data-label="Total" class="item_total">${{ detail.total_price|intcomma }}</td>
+
+
+                        <td data-label="Remove">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+
+
                 </tbody>
             </table>
         </div>
@@ -119,7 +74,7 @@
                 <table>
                     <tr>
                         <th>Subtotal</th>
-                        <td class="cart_subtotal">$1,497.00</td>
+                        <td class="cart_subtotal">${{ sum|intcomma }}</td>
                     </tr>
                     <tr>
                         <th>Shipping</th>
@@ -127,7 +82,7 @@
                     </tr>
                     <tr class="total_row">
                         <th>Total</th>
-                        <td class="cart_total">$1,497.00</td>
+                        <td class="cart_total">${{ sum|intcomma }}</td>
                     </tr>
                 </table>
                 <a href="checkout.html" class="btn_cart">Proceed to Checkout</a>
@@ -154,6 +109,6 @@
     </div>
 
     <div class="back_to_top">
-      <p>back to top</p>
+        <p>back to top</p>
     </div>
 {% endblock %}

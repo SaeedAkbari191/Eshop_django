@@ -9,6 +9,7 @@ from django.views.generic import View
 from django.contrib.auth import login, logout
 
 from account_module.models import User
+from order_module.models import Order
 from user_panel_module.forms import EditProfileModelForm, ChangePasswordForm
 
 
@@ -84,4 +85,15 @@ def user_panel_menu_components(request):
 
 
 def user_basket(request: HttpRequest):
-    return render(request, 'user_panel_module/user_basket.html')
+    current_order, created = Order.objects.get_or_create(is_paid=False, user=request.user)
+    total = 0
+
+    for detail in current_order.orderdetail_set.all():
+        print(detail.product.price * detail.count)
+        total += detail.product.price * detail.count
+
+    context = {
+        'order': current_order,
+        'sum': total
+    }
+    return render(request, 'user_panel_module/user_basket.html', context)
