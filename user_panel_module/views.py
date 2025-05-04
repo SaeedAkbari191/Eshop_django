@@ -69,7 +69,6 @@ class ChangePasswordPageView(View):
             else:
                 form.add_error('current_password', 'Current password is incorrect.')
 
-
         context = {
             'change_password_form': form
         }
@@ -82,3 +81,7 @@ def user_panel_menu_components(request):
         'current_user': current_user,
     }
     return render(request, 'user_panel_module/includes/user_panel_menu_components.html', context)
+
+
+def user_basket(request: HttpRequest):
+    return render(request, 'user_panel_module/user_basket.html')
