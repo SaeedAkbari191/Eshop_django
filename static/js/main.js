@@ -167,7 +167,7 @@ function AddToOrder(product_id) {
     })
 }
 
-function removeOrderDetail(detailId, element) {
+function removeOrderDetail(detailId) {
     $.get('/user/remove-order-detail?detail_id=' + detailId).then(response => {
         if (response.status === 'success') {
             $('#order_detail_content').html(response.body);
