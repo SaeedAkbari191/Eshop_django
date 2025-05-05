@@ -114,27 +114,6 @@ back_to_top.addEventListener("click", function () {
 })
 
 
-// function toggleSubcategories(element) {
-//     const subList = element.nextElementSibling;
-//     const arrow = element.querySelector(".arrow");
-//     subList.classList.toggle("open");
-//     arrow.classList.toggle("rotate");
-// }
-
-// function toggleExclusive(clickedElement) {
-//     const allSubLists = document.querySelectorAll('.subcategory-list');
-//     const allArrows = document.querySelectorAll('.arrow');
-//
-//     allSubLists.forEach(list => list.classList.remove('open'));
-//     allArrows.forEach(arrow => arrow.classList.remove('rotate'));
-//
-//     const subList = clickedElement.nextElementSibling;
-//     const arrow = clickedElement.querySelector(".arrow");
-//
-//     subList.classList.add('open');
-//     arrow.classList.add('rotate');
-// }
-
 function toggleExclusive(element) {
     const subcategoryList = element.nextElementSibling;
     const arrow = element.querySelector('.arrow');
@@ -181,12 +160,20 @@ function AddToOrder(product_id) {
             confirmButtonText: response.confirmButtonText
         }).then((result) => {
 
-            if (result.isConfirmed && response.status ==='Not_Authorized') {
+            if (result.isConfirmed && response.status === 'Not_Authorized') {
                 window.location.href = '/login';
-
             }
         });
     })
 }
 
+function removeOrderDetail(detailId, element) {
+    $.get('/user/remove-order-detail?detail_id=' + detailId).then(response => {
+        if (response.status === 'success') {
+            $('#order_detail_content').html(response.body);
+        } else {
+            alert('test');
+        }
+    })
+}
 

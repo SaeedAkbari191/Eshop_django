@@ -6,5 +6,6 @@ urlpatterns = [
     path('edit-profile/', views.EditProfilePageView.as_view(), name='edit_profile_page'),
     path('settings/', views.ChangePasswordPageView.as_view(), name='setting_page'),
     path('user-basket/', views.user_basket, name='user_basket_page'),
+    path('remove-order-detail/', views.remove_order_detail, name='remove_order_detail_page'),
 
 ]
