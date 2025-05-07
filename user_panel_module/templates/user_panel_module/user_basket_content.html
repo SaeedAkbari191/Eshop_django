@@ -89,6 +89,31 @@
         </div>
     </main>
 {% else %}
-    <p>test</p>
+    <div class="empty_cart_message">
+        <i class="fa-solid fa-cart-arrow-down"></i>
+        <h3>Your Shopping Cart is Empty!</h3>
+        <p>You have no items in your shopping cart.</p>
+        <a href="{% url 'product_list' %}" class="btn_cart">Continue Shopping</a>
+    </div>
 {% endif %}
 
+<div class="newsletter">
+    <div class="containeres">
+        <div class="text">
+            <img src="/static/img/icon_email.png" alt=""/>
+            <div class="content">
+                <h4>sign up to newsletter</h4>
+                <p>Get email updates about our latest shop...and receive</p>
+                <h6>$30 Coupon For First Shopping</h6>
+            </div>
+        </div>
+
+        <form action="" class="newsletter_form">
+            <input type="email" placeholder="Enter your email here..."/>
+            <button type="submit">subscribe</button>
+        </form>
+    </div>
+</div>
+<div class="back_to_top">
+    <p>back to top</p>
+</div>
