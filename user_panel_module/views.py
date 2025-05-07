@@ -7,7 +7,7 @@ from django.views.generic import TemplateView
 from django.views.generic import View
 
 from account_module.models import User
-from order_module.models import Order
+from order_module.models import Order, OrderDetail
 from user_panel_module.forms import EditProfileModelForm, ChangePasswordForm
 
 
@@ -85,14 +85,11 @@ def user_panel_menu_components(request):
 def user_basket(request: HttpRequest):
     current_order, created = Order.objects.prefetch_related('orderdetail_set').get_or_create(is_paid=False,
                                                                                              user=request.user)
-    total = 0
-
-    for detail in current_order.orderdetail_set.all():
-        total += detail.product.price * detail.count
+    total_amount = current_order.calculate_total_price()
 
     context = {
         'order': current_order,
-        'sum': total
+        'sum': total_amount
     }
     return render(request, 'user_panel_module/user_basket.html', context)
 
@@ -101,29 +98,26 @@ def remove_order_detail(request: HttpRequest):
     detail_id = request.GET.get('detail_id')
     if detail_id is None:
         return JsonResponse({
-            'success': 'not_found_detail_id',
+            'status': 'not_found_detail_id',
         })
-    current_order, created = Order.objects.prefetch_related('orderdetail_set').get_or_create(
-        is_paid=False, user=request.user)
-    detail = current_order.orderdetail_set.filter(id=detail_id).first()
-    if detail is None:
-        return JsonResponse({
-            'success': 'detail_not_found',
-        })
-    detail.delete()
-    current_order, created = Order.objects.prefetch_related('orderdetail_set').get_or_create(
-        is_paid=False, user=request.user)
-    total = 0
 
-    for order_detail in current_order.orderdetail_set.all().exclude(id=detail_id):
-        total += order_detail.product.price * order_detail.count
+    delete_count, delete_dict = OrderDetail.objects.filter(id=detail_id, order__is_paid=False,
+                                                           order__user_id=request.user).delete()
+    if delete_count == 0:
+        return JsonResponse({
+            'status': 'detail_not_found',
+        })
+
+    current_order, created = Order.objects.prefetch_related('orderdetail_set').get_or_create(
+        is_paid=False, user=request.user)
+    total_amount = current_order.calculate_total_price()
 
     context = {
         'order': current_order,
-        'sum': total
+        'sum': total_amount
     }
-    data = render_to_string('user_panel_module/user_basket_content.html', context)
+
     return JsonResponse({
         'status': 'success',
-        'body': data
+        'body': render_to_string('user_panel_module/user_basket_content.html', context)
     })
