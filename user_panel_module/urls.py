@@ -7,5 +7,6 @@ urlpatterns = [
     path('settings/', views.ChangePasswordPageView.as_view(), name='setting_page'),
     path('user-basket/', views.user_basket, name='user_basket_page'),
     path('remove-order-detail/', views.remove_order_detail, name='remove_order_detail_page'),
+    path('change-order-detail/', views.changeOrderDetailCount, name='change_order_detail_page'),
 
 ]

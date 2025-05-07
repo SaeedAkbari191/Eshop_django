@@ -177,3 +177,14 @@ function removeOrderDetail(detailId) {
     })
 }
 
+function changeOrderDetail(detailId, state) {
+    $.get('/user/change-order-detail?detail_id=' + detailId + '&state=' + state).then(response => {
+        if (response.status === 'success') {
+            $('#order_detail_content').html(response.body);
+        } else {
+            alert('test');
+        }
+    })
+
+}
+

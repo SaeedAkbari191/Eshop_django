@@ -30,7 +30,7 @@
                                     <h4>
                                         <a href="">{{ detail.product.title }}</a>
                                     </h4>
-
+                                    <p>ID: {{ detail.product.id }}</p>
 
                                 </div>
                             </div>
@@ -38,9 +38,11 @@
                         <td data-label="Price" class="product_price">${{ detail.product.price }}</td>
                         <td data-label="Quantity">
                             <div class="quantity_control">
-                                <button class="decrease">-</button>
-                                <input type="number" value="{{ detail.count }}" min="1"/>
-                                <button class="increase">+</button>
+                                <button class="decrease" onclick="changeOrderDetail({{ detail.id }},'decrease')">-
+                                </button>
+                                <input type="number" value="{{ detail.count }}"  readonly/>
+                                <button class="increase" onclick="changeOrderDetail({{ detail.id }},'increase')">+
+                                </button>
                             </div>
                         </td>
                         <td data-label="Total" class="item_total">${{ detail.total_price|intcomma }}</td>
