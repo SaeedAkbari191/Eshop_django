@@ -71,7 +71,7 @@
     <section class="personal-info-section">
         <div class="section-header">
             <h2>Personal Information</h2>
-            <button class="edit-btn">Edit Profile</button>
+            <a class="edit-btn" href="{% url 'edit_profile_page' %}">Edit Profile</a>
         </div>
 
         <div class="info-content">
@@ -80,7 +80,7 @@
                         src="https://randomuser.me/api/portraits/men/32.jpg"
                         alt="Profile"
                 />
-                <button class="change-photo">Change Photo</button>
+{#                <button class="change-photo">Change Photo</button>#}
             </div>
 
             <div class="info-details">

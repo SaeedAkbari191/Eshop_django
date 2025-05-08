@@ -1,8 +1,10 @@
 from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest, JsonResponse
 from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from django.urls import reverse
+from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView
 from django.views.generic import View
 
@@ -13,11 +15,12 @@ from user_panel_module.forms import EditProfileModelForm, ChangePasswordForm
 
 # Create your views here.
 
-
+@method_decorator(login_required, name='dispatch')
 class UserPanelDashboardView(TemplateView):
     template_name = 'user_panel_module/user_panel_dashboard_page.html'
 
 
+@method_decorator(login_required, name='dispatch')
 class EditProfilePageView(View):
     def get(self, request):
         current_user = User.objects.filter(id=request.user.id).first()
@@ -44,6 +47,7 @@ def setting(request):
     return render(request, 'user_panel_module/settings.html')
 
 
+@method_decorator(login_required, name='dispatch')
 class ChangePasswordPageView(View):
     def get(self, request: HttpRequest):
         form = ChangePasswordForm()
@@ -82,6 +86,7 @@ def user_panel_menu_components(request):
     return render(request, 'user_panel_module/includes/user_panel_menu_components.html', context)
 
 
+@login_required
 def user_basket(request: HttpRequest):
     current_order, created = Order.objects.prefetch_related('orderdetail_set').get_or_create(is_paid=False,
                                                                                              user=request.user)
@@ -94,6 +99,7 @@ def user_basket(request: HttpRequest):
     return render(request, 'user_panel_module/user_basket.html', context)
 
 
+@login_required
 def remove_order_detail(request: HttpRequest):
     detail_id = request.GET.get('detail_id')
     if detail_id is None:
@@ -123,6 +129,7 @@ def remove_order_detail(request: HttpRequest):
     })
 
 
+@login_required
 def changeOrderDetailCount(request: HttpRequest):
     detail_id = request.GET.get('detail_id')
     state = request.GET.get('state')
@@ -147,9 +154,10 @@ def changeOrderDetailCount(request: HttpRequest):
         else:
             order_detail.count -= 1
             order_detail.save()
-
     else:
-        pass
+        return JsonResponse({
+            'status': 'state_invalid',
+        })
 
     current_order, created = Order.objects.prefetch_related('orderdetail_set').get_or_create(
         is_paid=False, user=request.user)

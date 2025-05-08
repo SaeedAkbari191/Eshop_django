@@ -83,6 +83,7 @@ WSGI_APPLICATION = 'EcommerceDjangoProject.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 AUTH_USER_MODEL = 'account_module.User'
+LOGIN_URL = 'login_page'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
