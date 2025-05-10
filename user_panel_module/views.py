@@ -94,10 +94,27 @@ class UserBasket(View):
         current_order, created = Order.objects.prefetch_related('orderdetail_set').get_or_create(is_paid=False,
                                                                                                  user=request.user)
         total_amount = current_order.calculate_total_price()
+        host = request.get_host()
+        # PAYPAL
+
+        paypal_dict = {
+            "business": settings.PAYPAL_RECEIVER_EMAIL,
+            "amount": total_amount,
+            "item_name": ' test',
+            'no_shipping': '2',
+            "invoice": str(uuid.uuid4()),
+            'currency_code': 'USD',
+            "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
+            "return_url": request.build_absolute_uri(reverse('payment_success_page')),  # SUCCESS
+            "cancel_url": request.build_absolute_uri(reverse('payment_failure_page')),  # CANCEL
+            "custom": "premium_plan",  # Custom command to correlate to some function later (optional)
+        }
+        payment_form = PayPalPaymentsForm(initial=paypal_dict)
 
         context = {
             'order': current_order,
-            'sum': total_amount
+            'sum': total_amount,
+            'payment_form': payment_form,
         }
         return render(request, 'user_panel_module/user_basket.html', context)
 
@@ -111,21 +128,21 @@ class UserBasket(View):
         paypal_dict = {
             "business": settings.PAYPAL_RECEIVER_EMAIL,
             "amount": total_amount,
-            "item_name": current_order.product.title,
+            "item_name": ' test',
             'no_shipping': '2',
             "invoice": str(uuid.uuid4()),
             'currency_code': 'USD',
             "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
             "return_url": request.build_absolute_uri(reverse('payment_success_page')),  # SUCCESS
             "cancel_url": request.build_absolute_uri(reverse('payment_failure_page')),  # CANCEL
-            "return": request.build_absolute_uri(reverse('your-return-view')),
-            "cancel_return": request.build_absolute_uri(reverse('your-cancel-view')),
             "custom": "premium_plan",  # Custom command to correlate to some function later (optional)
         }
+        payment_form = PayPalPaymentsForm(initial=paypal_dict)
 
         context = {
             'order': current_order,
-            'sum': total_amount
+            'sum': total_amount,
+            'payment_form': payment_form,
         }
         return render(request, 'user_panel_module/user_basket.html', context)
 

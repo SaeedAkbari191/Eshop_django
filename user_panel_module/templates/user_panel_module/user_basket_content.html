@@ -72,23 +72,28 @@
 
             <div class="cart_totals">
                 <h4>Cart Totals</h4>
-                <form action="">
-                    <table>
-                        <tr>
-                            <th>Subtotal</th>
-                            <td class="cart_subtotal">${{ sum|intcomma }}</td>
-                        </tr>
-                        <tr>
-                            <th>Shipping</th>
-                            <td>Free Shipping</td>
-                        </tr>
-                        <tr class="total_row">
-                            <th>Total</th>
-                            <td class="cart_total">${{ sum|intcomma }}</td>
-                        </tr>
-                    </table>
-                    <a type="submit" class="btn_cart">Proceed to Checkout</a>
-                </form>
+                <table>
+                    <tr>
+                        <th>Subtotal</th>
+                        <td class="cart_subtotal">${{ sum|intcomma }}</td>
+                    </tr>
+                    <tr>
+                        <th>Shipping</th>
+                        <td>Free Shipping</td>
+                    </tr>
+                    <tr class="total_row">
+                        <th>Total</th>
+                        <td class="cart_total">${{ sum|intcomma }}</td>
+                    </tr>
+
+                </table>
+                {% if payment_form %}
+                    <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn_cart">Proceed to Checkout</button>
+                        {{ payment_form.render }}
+                    </form>
+                {% endif %}
 
             </div>
         </div>

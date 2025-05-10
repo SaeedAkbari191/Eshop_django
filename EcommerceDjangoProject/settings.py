@@ -24,7 +24,8 @@ SECRET_KEY = 'django-insecure-v*41ze4ong%ek6xjd!t!i=l5sk#of^j#&q7@jwiswv167t=t@x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['7d24-149-54-32-133.ngrok-free.app', 'localhost', ]
+CSRF_TRUSTED_ORIGINS = ['https://7d24-149-54-32-133.ngrok-free.app']
 
 # Application definition
 
@@ -152,4 +153,4 @@ EMAIL_HOST_PASSWORD = 'cpnw wexj hicw flqy'
 # PYPAL SETTING
 # SET SANDBOX TO TRUE
 PAYPAL_TEST = True
-PAYPAL_RECEIVER_EMAIL = ' BeccomerceProject@gamil.com'
+PAYPAL_RECEIVER_EMAIL = 'BeccomerceProject@gamil.com'
