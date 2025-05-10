@@ -40,7 +40,7 @@
                             <div class="quantity_control">
                                 <button class="decrease" onclick="changeOrderDetail({{ detail.id }},'decrease')">-
                                 </button>
-                                <input type="number" value="{{ detail.count }}"  readonly/>
+                                <input type="number" value="{{ detail.count }}" readonly/>
                                 <button class="increase" onclick="changeOrderDetail({{ detail.id }},'increase')">+
                                 </button>
                             </div>
@@ -72,21 +72,24 @@
 
             <div class="cart_totals">
                 <h4>Cart Totals</h4>
-                <table>
-                    <tr>
-                        <th>Subtotal</th>
-                        <td class="cart_subtotal">${{ sum|intcomma }}</td>
-                    </tr>
-                    <tr>
-                        <th>Shipping</th>
-                        <td>Free Shipping</td>
-                    </tr>
-                    <tr class="total_row">
-                        <th>Total</th>
-                        <td class="cart_total">${{ sum|intcomma }}</td>
-                    </tr>
-                </table>
-                <a href="checkout.html" class="btn_cart">Proceed to Checkout</a>
+                <form action="">
+                    <table>
+                        <tr>
+                            <th>Subtotal</th>
+                            <td class="cart_subtotal">${{ sum|intcomma }}</td>
+                        </tr>
+                        <tr>
+                            <th>Shipping</th>
+                            <td>Free Shipping</td>
+                        </tr>
+                        <tr class="total_row">
+                            <th>Total</th>
+                            <td class="cart_total">${{ sum|intcomma }}</td>
+                        </tr>
+                    </table>
+                    <a type="submit" class="btn_cart">Proceed to Checkout</a>
+                </form>
+
             </div>
         </div>
     </main>

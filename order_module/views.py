@@ -2,6 +2,11 @@ from django.http import JsonResponse
 from order_module.models import Order, OrderDetail
 from product_module.models import Product
 
+from django.urls import reverse
+from paypal.standard.forms import PayPalPaymentsForm
+from django.conf import settings
+import uuid
+
 
 # Create your views here.
 def add_to_order(request):

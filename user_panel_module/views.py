@@ -7,10 +7,12 @@ from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView
 from django.views.generic import View
-
 from account_module.models import User
 from order_module.models import Order, OrderDetail
 from user_panel_module.forms import EditProfileModelForm, ChangePasswordForm
+from paypal.standard.forms import PayPalPaymentsForm
+from django.conf import settings
+import uuid
 
 
 # Create your views here.
@@ -86,17 +88,59 @@ def user_panel_menu_components(request):
     return render(request, 'user_panel_module/includes/user_panel_menu_components.html', context)
 
 
-@login_required
-def user_basket(request: HttpRequest):
-    current_order, created = Order.objects.prefetch_related('orderdetail_set').get_or_create(is_paid=False,
-                                                                                             user=request.user)
-    total_amount = current_order.calculate_total_price()
+@method_decorator(login_required, name='dispatch')
+class UserBasket(View):
+    def get(self, request: HttpRequest):
+        current_order, created = Order.objects.prefetch_related('orderdetail_set').get_or_create(is_paid=False,
+                                                                                                 user=request.user)
+        total_amount = current_order.calculate_total_price()
 
-    context = {
-        'order': current_order,
-        'sum': total_amount
-    }
-    return render(request, 'user_panel_module/user_basket.html', context)
+        context = {
+            'order': current_order,
+            'sum': total_amount
+        }
+        return render(request, 'user_panel_module/user_basket.html', context)
+
+    def post(self, request: HttpRequest):
+        current_order, created = Order.objects.prefetch_related('orderdetail_set').get_or_create(is_paid=False,
+                                                                                                 user=request.user)
+        total_amount = current_order.calculate_total_price()
+        host = request.get_host()
+        # PAYPAL
+
+        paypal_dict = {
+            "business": settings.PAYPAL_RECEIVER_EMAIL,
+            "amount": total_amount,
+            "item_name": current_order.product.title,
+            'no_shipping': '2',
+            "invoice": str(uuid.uuid4()),
+            'currency_code': 'USD',
+            "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
+            "return_url": request.build_absolute_uri(reverse('payment_success_page')),  # SUCCESS
+            "cancel_url": request.build_absolute_uri(reverse('payment_failure_page')),  # CANCEL
+            "return": request.build_absolute_uri(reverse('your-return-view')),
+            "cancel_return": request.build_absolute_uri(reverse('your-cancel-view')),
+            "custom": "premium_plan",  # Custom command to correlate to some function later (optional)
+        }
+
+        context = {
+            'order': current_order,
+            'sum': total_amount
+        }
+        return render(request, 'user_panel_module/user_basket.html', context)
+
+
+# @login_required
+# def user_basket(request: HttpRequest):
+#     current_order, created = Order.objects.prefetch_related('orderdetail_set').get_or_create(is_paid=False,
+#                                                                                              user=request.user)
+#     total_amount = current_order.calculate_total_price()
+#
+#     context = {
+#         'order': current_order,
+#         'sum': total_amount
+#     }
+#     return render(request, 'user_panel_module/user_basket.html', context)
 
 
 @login_required
@@ -172,3 +216,11 @@ def changeOrderDetailCount(request: HttpRequest):
         'status': 'success',
         'body': render_to_string('user_panel_module/user_basket_content.html', context)
     })
+
+
+def payment_success(request: HttpRequest):
+    return render(request, 'user_panel_module/payment_success.html')
+
+
+def payment_failure(request: HttpRequest):
+    return render(request, 'user_panel_module/payment_failure.html')

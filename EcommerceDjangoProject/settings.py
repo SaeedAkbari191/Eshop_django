@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'order_module',
     'django_render_partial',
     'sorl.thumbnail',
-    'django.contrib.humanize'
+    'django.contrib.humanize',
+    'paypal.standard.ipn'
 ]
 
 MIDDLEWARE = [
@@ -147,3 +148,8 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'm.saeedakbari559728@gmail.com'
 EMAIL_HOST_PASSWORD = 'cpnw wexj hicw flqy'
+
+# PYPAL SETTING
+# SET SANDBOX TO TRUE
+PAYPAL_TEST = True
+PAYPAL_RECEIVER_EMAIL = ' BeccomerceProject@gamil.com'
