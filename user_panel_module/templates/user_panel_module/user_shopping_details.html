@@ -1,0 +1,72 @@
+{% extends 'user_panel_module/base.html' %}
+
+{% block title %}
+    Shopping Cart
+{% endblock %}
+
+{% block content %}
+    <header class="dashboard-header">
+        <h1>Purchased Products</h1>
+        <p class="purchase-count">You have 12 purchased items</p>
+    </header>
+
+    <!-- Purchased Products List -->
+    <div class="products-list">
+        <!-- Product Item 1 -->
+        {% for item in order_items %}
+            <div class="product-card">
+
+                <div class="product-image">
+                    <img src="{{ item.product.image1.url }}" alt="Xbox Controller">
+                    <span class="purchase-badge">Purchased</span>
+                </div>
+                <div class="product-details">
+                    <h3 class="product-title">{{ item.product.title }}</h3>
+
+                    <div class="product-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span class="purchase-date">{{ item.order.payment_date }}</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-tag"></i>
+                            <span class="product-price">${{ item.total_price }}</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-box-open"></i>
+                            <span class="delivery-status">Delivered</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+
+
+        <!-- Product Item 2 -->
+        {#            <div class="product-card">#}
+        {#                <div class="product-image">#}
+        {#                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Wireless Headset">#}
+        {#                    <span class="purchase-badge">Purchased</span>#}
+        {#                </div>#}
+        {#                <div class="product-details">#}
+        {#                    <h3 class="product-title">Wireless Gaming Headset 7.1 Surround Sound</h3>#}
+        {#                    <div class="product-meta">#}
+        {#                        <div class="meta-item">#}
+        {#                            <i class="fas fa-calendar-alt"></i>#}
+        {#                            <span class="purchase-date">8 June 2023</span>#}
+        {#                        </div>#}
+        {#                        <div class="meta-item">#}
+        {#                            <i class="fas fa-tag"></i>#}
+        {#                            <span class="product-price">$129.99</span>#}
+        {#                        </div>#}
+        {#                        <div class="meta-item">#}
+        {#                            <i class="fas fa-box-open"></i>#}
+        {#                            <span class="delivery-status">In Transit</span>#}
+        {#                        </div>#}
+        {#                    </div>#}
+        {#                </div>#}
+        {#            </div>#}
+    </div>
+
+{% endblock %}

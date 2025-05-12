@@ -9,7 +9,7 @@ from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils.decorators import method_decorator
-from django.views.generic import TemplateView,ListView
+from django.views.generic import TemplateView, ListView
 from django.views.generic import View
 from paypal.standard.forms import PayPalPaymentsForm
 
@@ -34,8 +34,29 @@ class UserPanelDashboardView(TemplateView):
 
 @method_decorator(login_required, name='dispatch')
 class MyShoppingPage(ListView):
-    model = Order
     template_name = 'user_panel_module/user_shopping.html'
+    model = Order
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        request = self.request
+        queryset = queryset.filter(user_id=request.user.id, is_paid=True)
+
+        return queryset
+
+
+# @method_decorator(login_required, name='dispatch')
+# class MyShoppingPage(ListView):
+#     model = OrderDetail
+#     template_name = 'user_panel_module/user_shopping_details.html'
+#     context_object_name = 'order_items'
+#
+# def get_queryset(self):
+#     queryset = super().get_queryset()
+#     request = self.request
+#     queryset = queryset.filter(order__user_id=request.user.id, order__is_paid=True)
+#
+#     return queryset
 
 
 @method_decorator(login_required, name='dispatch')

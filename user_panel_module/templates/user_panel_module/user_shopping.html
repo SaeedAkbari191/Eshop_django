@@ -6,65 +6,36 @@
 
 {% block content %}
     <header class="dashboard-header">
-        <h1>My Orders</h1>
-        <div class="header-actions">
-            <!-- Same header actions as dashboard -->
-        </div>
+        <h1>Order History</h1>
+        <p class="orders-count">5 orders found</p>
     </header>
 
-    <!-- Orders Filter -->
-    <div class="orders-filter">
-        <div class="filter-options">
-            <button class="active">All Orders</button>
-            <button>Completed</button>
-            <button>Processing</button>
-            <button>Cancelled</button>
+    <!-- Orders Table -->
+    <div class="orders-table">
+        <!-- Table Header -->
+        <div class="table-header">
+            <div class="col order-id">Order ID</div>
+            <div class="col total-price">Total Amount</div>
+            <div class="col order-date">Order Date</div>
+            <div class="col actions">Actions</div>
         </div>
-        <div class="search-box">
-            <input type="text" placeholder="Search orders..."/>
-            <i class="fas fa-search"></i>
-        </div>
+
+        <!-- Order Item -->
+        {% for order in order_list %}
+            <div class="order-item">
+                <div class="col order-id">{{ order.id }}</div>
+                <div class="col total-price">${{ order.calculate_total_price }}</div>
+                <div class="col order-date">{{ order.payment_date }}</div>
+                <div class="col actions">
+                    <a href="purchase-details.html" class="details-btn">
+                        Details
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+
+
+        <!-- More Order Items -->
+
     </div>
-
-    <!-- Orders List -->
-    <div class="orders-list">
-        <div class="order-card">
-            <div class="order-header">
-                <div class="order-info">
-                    <span class="order-id">Order #ORD-2023-001</span>
-                    <span class="order-date">Placed on Jun 12, 2023</span>
-                </div>
-                <div class="order-total">
-                    <span>$129.99</span>
-                    <span class="status completed">Completed</span>
-                </div>
-            </div>
-
-            <div class="order-products">
-                <div class="product-item">
-                    <img src="../img/product/1.png" alt="Product"/>
-
-                    <div class="product-details">
-                        <h4>Xbox Wireless Controller</h4>
-                        <p>Quantity: 1</p>
-                        <p>$59.99</p>
-                    </div>
-                </div>
-                <!-- More products -->
-            </div>
-
-            <div class="order-actions">
-                <button class="btn reorder">Reorder</button>
-                <button
-                        class="btn view-details"
-                        onclick="window.location.href='order-details.html'"
-                >
-                    View Details
-                </button>
-            </div>
-        </div>
-
-        <!-- More order cards -->
-    </div>
-
 {% endblock %}
