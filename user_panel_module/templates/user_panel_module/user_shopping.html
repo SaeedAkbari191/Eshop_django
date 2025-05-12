@@ -27,7 +27,7 @@
                 <div class="col total-price">${{ order.calculate_total_price }}</div>
                 <div class="col order-date">{{ order.payment_date }}</div>
                 <div class="col actions">
-                    <a href="purchase-details.html" class="details-btn">
+                    <a href="{% url 'user_shopping_details_page' order_id=order.id %}" class="details-btn">
                         Details
                     </a>
                 </div>

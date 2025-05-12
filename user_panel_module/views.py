@@ -4,7 +4,7 @@ from msilib.schema import ListView
 from django.conf import settings
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from django.http import HttpRequest, JsonResponse
+from django.http import HttpRequest, JsonResponse, Http404
 from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from django.urls import reverse
@@ -43,20 +43,6 @@ class MyShoppingPage(ListView):
         queryset = queryset.filter(user_id=request.user.id, is_paid=True)
 
         return queryset
-
-
-# @method_decorator(login_required, name='dispatch')
-# class MyShoppingPage(ListView):
-#     model = OrderDetail
-#     template_name = 'user_panel_module/user_shopping_details.html'
-#     context_object_name = 'order_items'
-#
-# def get_queryset(self):
-#     queryset = super().get_queryset()
-#     request = self.request
-#     queryset = queryset.filter(order__user_id=request.user.id, order__is_paid=True)
-#
-#     return queryset
 
 
 @method_decorator(login_required, name='dispatch')
@@ -278,3 +264,10 @@ def payment_success(request: HttpRequest):
 
 def payment_failure(request: HttpRequest):
     return render(request, 'user_panel_module/payment_failure.html')
+
+
+def my_shopping_details(request: HttpRequest, order_id):
+    order = Order.objects.filter(id=order_id, user_id=request.user).first()
+    if order is None:
+        raise Http404('Not Fount')
+    return render(request, 'user_panel_module/user_shopping_details.html', context={'orders': order})
