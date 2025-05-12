@@ -1,3 +1,7 @@
+import uuid
+from msilib.schema import ListView
+
+from django.conf import settings
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest, JsonResponse
@@ -5,14 +9,13 @@ from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils.decorators import method_decorator
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView,ListView
 from django.views.generic import View
+from paypal.standard.forms import PayPalPaymentsForm
+
 from account_module.models import User
 from order_module.models import Order, OrderDetail
 from user_panel_module.forms import EditProfileModelForm, ChangePasswordForm
-from paypal.standard.forms import PayPalPaymentsForm
-from django.conf import settings
-import uuid
 
 
 # Create your views here.
@@ -20,6 +23,19 @@ import uuid
 @method_decorator(login_required, name='dispatch')
 class UserPanelDashboardView(TemplateView):
     template_name = 'user_panel_module/user_panel_dashboard_page.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        request: HttpRequest = self.request
+        current_user = User.objects.filter(id=request.user.id).first()
+        context['current_user'] = current_user
+        return context
+
+
+@method_decorator(login_required, name='dispatch')
+class MyShoppingPage(ListView):
+    model = Order
+    template_name = 'user_panel_module/user_shopping.html'
 
 
 @method_decorator(login_required, name='dispatch')

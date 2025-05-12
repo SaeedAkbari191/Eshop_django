@@ -7,16 +7,16 @@
     <header class="dashboard-header">
         <h1>Dashboard Overview</h1>
         <div class="header-actions">
-            <div class="notification-bell">
-                <i class="fas fa-bell"></i>
-                <span class="notification-count">3</span>
-            </div>
+{#            <div class="notification-bell">#}
+{#                <i class="fas fa-bell"></i>#}
+{#                <span class="notification-count">3</span>#}
+{#            </div>#}
             <div class="user-menu">
                 <img
-                        src="https://randomuser.me/api/portraits/men/32.jpg"
+                        src="{{ current_user.avatar.url }}"
                         alt="User"
                 />
-                <span>John Doe</span>
+                <span>{{ current_user }}</span>
             </div>
         </div>
     </header>
@@ -77,38 +77,35 @@
         <div class="info-content">
             <div class="profile-picture">
                 <img
-                        src="https://randomuser.me/api/portraits/men/32.jpg"
+                        src="{{ current_user.avatar.url }}"
                         alt="Profile"
                 />
-{#                <button class="change-photo">Change Photo</button>#}
+                {#                <button class="change-photo">Change Photo</button>#}
             </div>
 
             <div class="info-details">
                 <table>
                     <tr>
-                        <th>Full Name:</th>
-                        <td>John Doe</td>
+                        <th>First Name:</th>
+                        <td>{{ current_user.first_name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Last Name:</th>
+                        <td>{{ current_user.last_name }}</td>
                     </tr>
                     <tr>
                         <th>Email:</th>
-                        <td>john.doe@example.com</td>
+                        <td>{{ current_user.email }}</td>
                     </tr>
                     <tr>
-                        <th>Phone:</th>
-                        <td>+1 (555) 123-4567</td>
-                    </tr>
-                    <tr>
-                        <th>Date of Birth:</th>
-                        <td>January 15, 1990</td>
-                    </tr>
-                    <tr>
-                        <th>Gender:</th>
-                        <td>Male</td>
+                        <th>Address:</th>
+                        <td>{{ current_user.address }}</td>
                     </tr>
                     <tr>
                         <th>Member Since:</th>
-                        <td>March 2022</td>
+                        <td>{{ current_user.date_joined |date }}</td>
                     </tr>
+
                 </table>
             </div>
         </div>
@@ -118,7 +115,7 @@
     <section class="recent-orders">
         <div class="section-header">
             <h2>Recent Orders</h2>
-            <a href="#" class="view-all">View All</a>
+            <a href="#" class="edit-btn">View All</a>
         </div>
 
         <div class="orders-table">
@@ -129,7 +126,6 @@
                     <th>Date</th>
                     <th>Items</th>
                     <th>Total</th>
-                    <th>Status</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -139,7 +135,6 @@
                     <td>Jun 12, 2023</td>
                     <td>3</td>
                     <td>$129.99</td>
-                    <td><span class="status completed">Completed</span></td>
                     <td><a href="#">View</a></td>
                 </tr>
                 <tr>
@@ -147,7 +142,6 @@
                     <td>Jun 8, 2023</td>
                     <td>1</td>
                     <td>$59.99</td>
-                    <td><span class="status completed">Completed</span></td>
                     <td><a href="#">View</a></td>
                 </tr>
                 <tr>
@@ -155,7 +149,6 @@
                     <td>Jun 5, 2023</td>
                     <td>2</td>
                     <td>$89.50</td>
-                    <td><span class="status pending">Pending</span></td>
                     <td><a href="#">View</a></td>
                 </tr>
                 <tr>
@@ -163,7 +156,6 @@
                     <td>May 28, 2023</td>
                     <td>1</td>
                     <td>$45.00</td>
-                    <td><span class="status cancelled">Cancelled</span></td>
                     <td><a href="#">View</a></td>
                 </tr>
                 </tbody>

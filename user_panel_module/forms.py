@@ -4,6 +4,8 @@ from django.core.exceptions import ValidationError
 from account_module.models import User
 
 
+
+
 class EditProfileModelForm(forms.ModelForm):
     class Meta:
         model = User
@@ -48,7 +50,6 @@ class EditProfileModelForm(forms.ModelForm):
             'address': 'Address',
             'about_user': 'About User'
         }
-
 
 class ChangePasswordForm(forms.Form):
     current_password = forms.CharField(
