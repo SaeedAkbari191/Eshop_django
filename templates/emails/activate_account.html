@@ -76,7 +76,8 @@
 <div class="container">
     <h2>Activate Your Account</h2>
     <p>Thank you for signing up! Please click the button below to activate your account:</p>
-    <a class="btn" href="http://localhost:8000{% url 'activate-account' email_active_code=user.email_active_code %}">Activate
+    <a class="btn"
+       href="https://5412-149-54-32-133.ngrok-free.app{% url 'activate-account' email_active_code=user.email_active_code %}">Activate
         Account</a>
     <div class="footer">
         If you didn’t create an account, you can safely ignore this email.
