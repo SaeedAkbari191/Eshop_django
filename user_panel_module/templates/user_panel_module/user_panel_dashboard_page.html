@@ -7,15 +7,17 @@
     <header class="dashboard-header">
         <h1>Dashboard Overview</h1>
         <div class="header-actions">
-{#            <div class="notification-bell">#}
-{#                <i class="fas fa-bell"></i>#}
-{#                <span class="notification-count">3</span>#}
-{#            </div>#}
+            {#            <div class="notification-bell">#}
+            {#                <i class="fas fa-bell"></i>#}
+            {#                <span class="notification-count">3</span>#}
+            {#            </div>#}
             <div class="user-menu">
-                <img
-                        src="{{ current_user.avatar.url }}"
-                        alt="User"
-                />
+                {% if current_user.avatar %}
+                    <img
+                            src="{{ current_user.avatar.url }}"
+                            alt="User"
+                    />
+                {% endif %}
                 <span>{{ current_user }}</span>
             </div>
         </div>
@@ -76,10 +78,12 @@
 
         <div class="info-content">
             <div class="profile-picture">
-                <img
-                        src="{{ current_user.avatar.url }}"
-                        alt="Profile"
-                />
+                {% if current_user.avatar %}
+                    <img
+                            src="{{ current_user.avatar.url }}"
+                            alt="Profile"
+                    />
+                {% endif %}
                 {#                <button class="change-photo">Change Photo</button>#}
             </div>
 

@@ -1,5 +1,4 @@
 {% load humanize %}
-
 {% if order.orderdetail_set.all %}
     <main class="containeres cart_page">
         <div class="cart_page_header">
@@ -44,7 +43,7 @@
                                 </button>
                             </div>
                         </td>
-                        <td data-label="Total" class="item_total">${{ detail.total_price|intcomma }}</td>
+                        <td data-label="Total" class="item_total">${{ detail.total_price }}</td>
 
 
                         <td data-label="Remove">

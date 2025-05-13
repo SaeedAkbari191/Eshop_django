@@ -1,4 +1,4 @@
-from django.db.models import Count
+from django.db.models import Count, Sum
 from django.http import HttpRequest
 from django.shortcuts import render
 from django.views.generic import View, TemplateView
@@ -30,6 +30,9 @@ class HomeView(TemplateView):
         product_main_category = ProductCategory.objects.prefetch_related('productcategory_set').filter(is_active=True,
                                                                                                        parent_id=None)
 
+        most_bought_products = Product.objects.filter(orderdetail__order__is_paid=True).annotate(order_count=Sum(
+            'orderdetail__count')).order_by('order_count')[:12]
+
         context = {
             'sliders': sliders,
             'main_categories': product_main_category,
@@ -38,6 +41,7 @@ class HomeView(TemplateView):
             'bottom_banners': banners[5:8],
             'latest_product': latest_product,
             'most_visit_product': most_visit_product,
+            'most_bought_products': most_bought_products,
         }
 
         return context

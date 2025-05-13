@@ -1,6 +1,5 @@
 from django.db import models
 
-
 from account_module.models import User
 from product_module.models import Product
 
@@ -41,7 +40,7 @@ class OrderDetail(models.Model):
         return str(self.order)
 
     def total_price(self):
-        if Order.is_paid:
+        if self.final_price is not None:
             return self.count * self.final_price
         else:
             return self.count * self.product.price
