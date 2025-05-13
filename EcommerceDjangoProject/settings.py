@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'site_module',
     'user_panel_module',
     'order_module',
+    'admin_panel',
     'django_render_partial',
     'sorl.thumbnail',
     'django.contrib.humanize',
