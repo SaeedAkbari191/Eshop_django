@@ -1,0 +1,51 @@
+{% extends 'admin_panel/shared/admin_layout.html' %}
+{% load widget_tweaks %}
+
+{% block title %}
+    Edit Product
+{% endblock %}
+
+{% block content %}
+    <div class="page-wrapper">
+        <div class="content">
+            <div class="page-header">
+                <div class="page-title">
+                    <h4>Product Edit</h4>
+                    <h6>Update your product</h6>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <form action="{% url 'product_edit_admin' pk=product.id %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                            {% for fields in form %}
+                                <div class="col-lg-3 col-sm-6 col-12 ">
+                                    <div class="form-group">
+                                        <label for="id_{{ fields.name }}">{{ fields.label }}:</label>
+                                        {% render_field fields class=' is-invalid' %}
+                                        <div>
+                                            <ul>
+                                                {% for error in fields.errors %}
+                                                    <li class="text-danger">{{ error }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            <div class="col-lg-12">
+                                <button type="submit" class="btn btn-submit me-2"
+                                >Update
+                                </button>
+                                <button href="productlist.html" class="btn btn-cancel">Cancel</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

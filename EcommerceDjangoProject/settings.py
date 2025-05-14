@@ -24,8 +24,8 @@ SECRET_KEY = 'django-insecure-v*41ze4ong%ek6xjd!t!i=l5sk#of^j#&q7@jwiswv167t=t@x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['5412-149-54-32-133.ngrok-free.app', 'localhost', '127.0.0.1']
-CSRF_TRUSTED_ORIGINS = ['https://5412-149-54-32-133.ngrok-free.app', 'http://localhost:8000/']
+ALLOWED_HOSTS = ['b826-149-54-32-134.ngrok-free.app', 'localhost', '127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://b826-149-54-32-134.ngrok-free.app', 'http://localhost:8000/']
 
 # Application definition
 
@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'django_render_partial',
     'sorl.thumbnail',
     'django.contrib.humanize',
-    'paypal.standard.ipn'
+    'paypal.standard.ipn',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
