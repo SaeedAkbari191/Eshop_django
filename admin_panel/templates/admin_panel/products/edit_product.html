@@ -4,7 +4,6 @@
 {% block title %}
     Edit Product
 {% endblock %}
-
 {% block content %}
     <div class="page-wrapper">
         <div class="content">
@@ -18,8 +17,9 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <form action="{% url 'product_edit_admin' pk=product.id %}" method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
+                        <form action="{% url 'product_edit_admin' pk=product.id %}" method="post"
+                              enctype="multipart/form-data">
+                            {% csrf_token %}
                             {% for fields in form %}
                                 <div class="col-lg-3 col-sm-6 col-12 ">
                                     <div class="form-group">
