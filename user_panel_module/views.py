@@ -28,21 +28,13 @@ class UserPanelDashboardView(TemplateView):
         context = super().get_context_data(**kwargs)
         request: HttpRequest = self.request
         current_user = User.objects.filter(id=request.user.id).first()
-        context['current_user'] = current_user
+        order_detail = Order.objects.filter(user_id=request.user.id, is_paid=True)
+
+        context={
+            'current_user': current_user,
+            'order_detail': order_detail,
+        }
         return context
-
-
-@method_decorator(login_required, name='dispatch')
-class MyShoppingPage(ListView):
-    template_name = 'user_panel_module/user_shopping.html'
-    model = Order
-
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        request = self.request
-        queryset = queryset.filter(user_id=request.user.id, is_paid=True)
-
-        return queryset
 
 
 @method_decorator(login_required, name='dispatch')
@@ -66,10 +58,6 @@ class EditProfilePageView(View):
             'current_user': current_user,
         }
         return render(request, 'user_panel_module/edit_profile_page.html', context)
-
-
-def setting(request):
-    return render(request, 'user_panel_module/settings.html')
 
 
 @method_decorator(login_required, name='dispatch')
@@ -101,6 +89,10 @@ class ChangePasswordPageView(View):
             'change_password_form': form
         }
         return render(request, 'user_panel_module/settings.html', context)
+
+
+def setting(request):
+    return render(request, 'user_panel_module/settings.html')
 
 
 def user_panel_menu_components(request):
@@ -168,19 +160,6 @@ class UserBasket(View):
             'payment_form': payment_form,
         }
         return render(request, 'user_panel_module/user_basket.html', context)
-
-
-# @login_required
-# def user_basket(request: HttpRequest):
-#     current_order, created = Order.objects.prefetch_related('orderdetail_set').get_or_create(is_paid=False,
-#                                                                                              user=request.user)
-#     total_amount = current_order.calculate_total_price()
-#
-#     context = {
-#         'order': current_order,
-#         'sum': total_amount
-#     }
-#     return render(request, 'user_panel_module/user_basket.html', context)
 
 
 @login_required
@@ -264,6 +243,18 @@ def payment_success(request: HttpRequest):
 
 def payment_failure(request: HttpRequest):
     return render(request, 'user_panel_module/payment_failure.html')
+
+
+@method_decorator(login_required, name='dispatch')
+class MyShoppingPage(ListView):
+    template_name = 'user_panel_module/user_shopping.html'
+    model = Order
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        request = self.request
+        queryset = queryset.filter(user_id=request.user.id, is_paid=True)
+        return queryset
 
 
 def my_shopping_details(request: HttpRequest, order_id):

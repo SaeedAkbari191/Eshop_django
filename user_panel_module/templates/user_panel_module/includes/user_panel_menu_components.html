@@ -14,29 +14,25 @@
 
     <nav class="sidebar-nav">
         <ul>
-            <li class="active">
+            <li
+                    class="{% if request.resolver_match.url_name == 'user_panel_dashboard' %} active{% endif %}"
+            >
                 <a href="{% url 'user_panel_dashboard' %}"><i class="fas fa-home"></i> Dashboard</a>
             </li>
-            <li>
+            <li class="{% if request.resolver_match.url_name == 'edit_profile_page' %} active{% endif %}">
                 <a href="{% url 'edit_profile_page' %}"><i class="fas fa-user"></i> Profile</a>
             </li>
-            <li>
+            <li class="{% if request.resolver_match.url_name == 'user_shopping_page' %} active{% endif %}">
                 <a href="{% url 'user_shopping_page' %}"><i class="fas fa-shopping-cart"></i> Orders</a>
             </li>
             <li>
                 <a href="#"><i class="fas fa-heart"></i> Wishlist</a>
             </li>
             <li>
-                <a href="#"><i class="fas fa-map-marker-alt"></i> Addresses</a>
-            </li>
-            <li>
-                <a href="#"><i class="fas fa-credit-card"></i> Payments</a>
-            </li>
-            <li>
                 <a href="{% url 'setting_page' %}"><i class="fas fa-cog"></i> Settings</a>
             </li>
             <li>
-                <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                <a href="{% url 'home_page' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
             </li>
         </ul>
     </nav>

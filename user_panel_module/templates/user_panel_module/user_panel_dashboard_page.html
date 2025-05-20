@@ -7,10 +7,7 @@
     <header class="dashboard-header">
         <h1>Dashboard Overview</h1>
         <div class="header-actions">
-            {#            <div class="notification-bell">#}
-            {#                <i class="fas fa-bell"></i>#}
-            {#                <span class="notification-count">3</span>#}
-            {#            </div>#}
+
             <div class="user-menu">
                 {% if current_user.avatar %}
                     <img
@@ -119,7 +116,7 @@
     <section class="recent-orders">
         <div class="section-header">
             <h2>Recent Orders</h2>
-            <a href="#" class="edit-btn">View All</a>
+            <a href="{% url 'user_shopping_page' %}" class="edit-btn">View All</a>
         </div>
 
         <div class="orders-table">
@@ -127,41 +124,20 @@
                 <thead>
                 <tr>
                     <th>Order ID</th>
+                     <th>Total</th>
                     <th>Date</th>
-                    <th>Items</th>
-                    <th>Total</th>
                     <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>#ORD-2023-001</td>
-                    <td>Jun 12, 2023</td>
-                    <td>3</td>
-                    <td>$129.99</td>
-                    <td><a href="#">View</a></td>
-                </tr>
-                <tr>
-                    <td>#ORD-2023-002</td>
-                    <td>Jun 8, 2023</td>
-                    <td>1</td>
-                    <td>$59.99</td>
-                    <td><a href="#">View</a></td>
-                </tr>
-                <tr>
-                    <td>#ORD-2023-003</td>
-                    <td>Jun 5, 2023</td>
-                    <td>2</td>
-                    <td>$89.50</td>
-                    <td><a href="#">View</a></td>
-                </tr>
-                <tr>
-                    <td>#ORD-2023-004</td>
-                    <td>May 28, 2023</td>
-                    <td>1</td>
-                    <td>$45.00</td>
-                    <td><a href="#">View</a></td>
-                </tr>
+                {% for detail in order_detail %}
+                    <tr>
+                        <td>{{ detail.id }}</td>
+                        <td>{{ detail.payment_date }}</td>
+                        <td>${{ detail.calculate_total_price }}</td>
+                        <td><a href="{% url 'user_shopping_details_page' order_id=detail.id %}">View</a></td>
+                    </tr>
+                {% endfor %}
                 </tbody>
             </table>
         </div>
