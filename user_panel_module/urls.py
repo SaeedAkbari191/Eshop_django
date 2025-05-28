@@ -10,6 +10,7 @@ urlpatterns = [
     path('my-shopping-details/<order_id>', views.my_shopping_details, name='user_shopping_details_page'),
     path('remove-order-detail/', views.remove_order_detail, name='remove_order_detail_page'),
     path('change-order-detail/', views.changeOrderDetailCount, name='change_order_detail_page'),
+    # path('payment/',views.payment_view, name='payment_page'),
     path('payment-success/', views.payment_success, name='payment_success_page'),
     path('payment-failure/', views.payment_failure, name='payment_failure_page'),
     path('paypal/', include("paypal.standard.ipn.urls")),

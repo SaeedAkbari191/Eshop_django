@@ -30,7 +30,7 @@ class UserPanelDashboardView(TemplateView):
         current_user = User.objects.filter(id=request.user.id).first()
         order_detail = Order.objects.filter(user_id=request.user.id, is_paid=True)
 
-        context={
+        context = {
             'current_user': current_user,
             'order_detail': order_detail,
         }
@@ -238,6 +238,8 @@ def changeOrderDetailCount(request: HttpRequest):
 
 
 def payment_success(request: HttpRequest):
+    print(request.user.id)
+    print(request.user)
     return render(request, 'user_panel_module/payment_success.html')
 
 
