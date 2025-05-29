@@ -28,7 +28,7 @@
             <li>
                 <a href="#"><i class="fas fa-heart"></i> Wishlist</a>
             </li>
-            <li>
+            <li class="{% if request.resolver_match.url_name == 'setting_page' %} active{% endif %}">
                 <a href="{% url 'setting_page' %}"><i class="fas fa-cog"></i> Settings</a>
             </li>
             <li>

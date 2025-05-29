@@ -8,6 +8,7 @@ from site_module.models import SiteSetting, FooterLinkBox, Sliders, SiteBanner
 from product_module.models import Product, ProductCategory
 from utils.convertor import group_list
 from utils.http_service import get_client_ip
+from order_module.models import Order
 
 
 # Create your views here.
@@ -49,8 +50,16 @@ class HomeView(TemplateView):
 
 def site_header_components(request):
     setting = SiteSetting.objects.filter(is_main_setting=True).first()
+    current_order, created = Order.objects.prefetch_related('orderdetail_set').get_or_create(is_paid=False,
+                                                                                             user=request.user)
+    order_detail = current_order.orderdetail_set.all()[:2]
+    count_item = current_order.orderdetail_set.aggregate(total=Sum('count'))['total'] or 0
+    total_amount = current_order.calculate_total_price()
     context = {
-        'site_setting': setting
+        'site_setting': setting,
+        'order': order_detail,
+        'sum': total_amount,
+        'count_item': count_item,
     }
     return render(request, 'shared/site_header_components.html', context)
 

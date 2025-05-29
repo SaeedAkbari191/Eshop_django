@@ -21,51 +21,51 @@
     </header>
 
     <!-- Stats Cards -->
-    <section class="stats-cards">
-        <div class="stat-card">
-            <div class="card-icon">
-                <i class="fas fa-shopping-bag"></i>
-            </div>
-            <div class="card-content">
-                <h3>Total Orders</h3>
-                <p>24</p>
-                <span>5 this month</span>
-            </div>
-        </div>
-
-        <div class="stat-card">
-            <div class="card-icon">
-                <i class="fas fa-heart"></i>
-            </div>
-            <div class="card-content">
-                <h3>Wishlist</h3>
-                <p>8</p>
-                <span>3 on sale</span>
-            </div>
-        </div>
-
-        <div class="stat-card">
-            <div class="card-icon">
-                <i class="fas fa-wallet"></i>
-            </div>
-            <div class="card-content">
-                <h3>Wallet Balance</h3>
-                <p>$245.50</p>
-                <span>$50 earned</span>
-            </div>
-        </div>
-
-        <div class="stat-card">
-            <div class="card-icon">
-                <i class="fas fa-star"></i>
-            </div>
-            <div class="card-content">
-                <h3>Reward Points</h3>
-                <p>1,250</p>
-                <span>250 to next level</span>
-            </div>
-        </div>
-    </section>
+{#    <section class="stats-cards">#}
+{#        <div class="stat-card">#}
+{#            <div class="card-icon">#}
+{#                <i class="fas fa-shopping-bag"></i>#}
+{#            </div>#}
+{#            <div class="card-content">#}
+{#                <h3>Total Orders</h3>#}
+{#                <p>24</p>#}
+{#                <span>5 this month</span>#}
+{#            </div>#}
+{#        </div>#}
+{##}
+{#        <div class="stat-card">#}
+{#            <div class="card-icon">#}
+{#                <i class="fas fa-heart"></i>#}
+{#            </div>#}
+{#            <div class="card-content">#}
+{#                <h3>Wishlist</h3>#}
+{#                <p>8</p>#}
+{#                <span>3 on sale</span>#}
+{#            </div>#}
+{#        </div>#}
+{##}
+{#        <div class="stat-card">#}
+{#            <div class="card-icon">#}
+{#                <i class="fas fa-wallet"></i>#}
+{#            </div>#}
+{#            <div class="card-content">#}
+{#                <h3>Wallet Balance</h3>#}
+{#                <p>$245.50</p>#}
+{#                <span>$50 earned</span>#}
+{#            </div>#}
+{#        </div>#}
+{##}
+{#        <div class="stat-card">#}
+{#            <div class="card-icon">#}
+{#                <i class="fas fa-star"></i>#}
+{#            </div>#}
+{#            <div class="card-content">#}
+{#                <h3>Reward Points</h3>#}
+{#                <p>1,250</p>#}
+{#                <span>250 to next level</span>#}
+{#            </div>#}
+{#        </div>#}
+{#    </section>#}
     <!-- Personal Information Section -->
     <section class="personal-info-section">
         <div class="section-header">
@@ -133,8 +133,9 @@
                 {% for detail in order_detail %}
                     <tr>
                         <td>{{ detail.id }}</td>
-                        <td>{{ detail.payment_date }}</td>
+                        
                         <td>${{ detail.calculate_total_price }}</td>
+                        <td>{{ detail.payment_date }}</td>
                         <td><a href="{% url 'user_shopping_details_page' order_id=detail.id %}">View</a></td>
                     </tr>
                 {% endfor %}

@@ -1,6 +1,7 @@
+{% load humanize %}
 <header>
     <div class="containeres top-nav">
-        <a href="index.html" class="logo"><img src="{{ site_setting.site_logo.url }}" alt=""></a>
+        <a href="{% url 'home_page' %}" class="logo"><img src="{{ site_setting.site_logo.url }}" alt=""></a>
         <form action="" class="search">
             <input type="search" placeholder="Search for products...">
             <button type="submit">Search</button>
@@ -9,11 +10,11 @@
         <div class="cart_header">
             <div onclick="open_cart()" class="icon_cart">
                 <i class="fa-solid fa-bag-shopping"></i>
-                <span class="count_item">0</span>
+                <span class="count_item">{{ count_item }}</span>
             </div>
             <div class="tottal_price">
                 <p>My Cart:</p>
-                <p class="price_cart_Head">$0</p>
+                <p class="price_cart_Head">${{ sum |intcomma }}</p>
             </div>
         </div>
     </div>
@@ -68,33 +69,37 @@
 <!-- add to cart -->
 <div class="cart ">
     <div class="top_cart">
-        <h3>My cart <span class="count_item_cart">(0Item in Cart)</span></h3>
+        <h3>My cart <span class="count_item_cart">( {{ count_item }} Items in Cart)</span></h3>
         <span onclick="close_cart()" class="close_cart"><i class="fa-regular fa-circle-xmark"></i></span>
     </div>
 
-    <div class="items_in_cart">
-        <div class="item_cart">
-            <img src="/static/img/product/product1.jpg" alt="">
-            <div class="content">
-                <h4>products</h4>
-                <p class="price_cart">price</p>
+    {% for detail in order %}
+        <div class="items_in_cart">
+            <div class="item_cart">
+                <img src="{{ detail.product.image1.url }}" alt="">
+                <div class="content">
+                    <h4>{{ detail.product.title }}</h4>
+                    <p class="price_cart">${{ detail.product.price }}</p>
+                </div>
             </div>
-            <button onClick="remove_from_cart()" class="delete_item"><i class="fa-solid fa-trash-can"></i></button>
+            <!-- cart.html -->
         </div>
-        <!-- cart.html -->
-    </div>
+    {% endfor %}
+
+
 
     <div class="bottom_Cart">
         <div class="total">
             <p>Cart subtotal</p>
-            <p class="price_cart_total">$0</p>
+            <p class="price_cart_total">${{ sum }}</p>
         </div>
 
         <div class="button_Cart">
-           
-            <a href="checkout.html" class="btn_cart">Proceed to checkout</a>
+
+
             <a href="{% url 'user_basket_page' %}" class="btn_cart trans_bg">Cart</a>
-{#            <button onclick="close_cart()" class="btn_cart trans_bg">Shop more</button>#}
+            {% comment %}  <a href="checkout.html" class="btn_cart">Proceed to checkout</a>{% endcomment %}
+            <a onclick="close_cart()" class="btn_cart ">Shop more</a>
         </div>
     </div>
 </div>
